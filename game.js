@@ -41,7 +41,7 @@ const chapters = {
       character: "AI אוריון",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "ברוכים הבאים, צוות צעיר! החללית שלי נפגעה — הקוד שלי מקולקל. אני לא יכולה לנווט בחלל… אתם צריכים לעזור לי לתקן את המודולים שלי. קודם נפעיל את בסיס החללית – בלי זה שום דבר לא עובד!",
+        "ברוכים הבאים, צוות צעיר! החללית שלי נפגעה — הקוד שלי מקולקל. אני לא יכולה לנווט בחלל… אתם צריכים לעזור לי לתקן את המערכת שלי. קודם נפעיל את בסיס החללית – בלי זה שום דבר לא עובד!",
       effect: "ship"
     },
 
@@ -53,12 +53,12 @@ const chapters = {
       story:
         "חדר המנוע הראשי: מנוע ענק בצורת צינור שקוף מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
       prompt:
-        'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Engine Start!',
+        'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Start',
       hint:
-        'השתמשו בפקודת print ובגרשיים, למשל: print("Engine Start!")',
+        'השתמשו בפקודת print ובגרשיים, למשל: print("Start")',
       validator: {
         mode: "exact",
-        patterns: ["print('Engine Start!')", 'print("Engine Start!")']
+        patterns: ["print('Start')", 'print("Start")']
       },
       effect: "engine",
       successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
@@ -145,13 +145,13 @@ const lessons = {
       icon: "⚙️",
       bg: "assets/backgrounds/ch1-engine-room.png",
       story:
-        "כתוב/כתבי פקודת print שמדליקה את המנוע עם ההודעה Engine Start!",
-      prompt: 'כתוב/כתבי שורה אחת שמדפיסה: Engine Start!',
+        "כתוב/כתבי פקודת print שמדליקה את המנוע עם ההודעה Start",
+      prompt: 'כתוב/כתבי שורה אחת שמדפיסה: Start',
       hint:
-        'שימו את Engine Start! בתוך גרשיים, למשל: print("Engine Start!")',
+        'שימו את Start בתוך גרשיים, למשל: print("Start!")',
       validator: {
         mode: "exact",
-        patterns: ["print('Engine Start!')", 'print("Engine Start!")']
+        patterns: ["print('Start')", 'print("Start")']
       },
       effect: "engine",
       successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
