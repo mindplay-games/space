@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="he" dir="rtl">
+<html lang="he">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindPlay – הרפתקת קוד עם אוריון</title>
-
-  <link rel="stylesheet" href="style.css" />
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>MindPlay – הרפתקת פייתון</title>
+  <link rel="stylesheet" href="style.css"/>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
@@ -14,16 +12,15 @@
 <body>
 
   <div class="game">
-
     <!-- TOP BAR -->
     <header class="topbar">
       <div class="brand">
-        <h1>MindPlay – מסע הקוד של אוריון</h1>
+        <h1>MindPlay – הרפתקת פייתון</h1>
       </div>
 
       <div class="chapter-line">
-        <span id="chapterTitle">פרק 1 – מודול הבסיס</span>
-        <span id="levelCounter">שלב 1/1</span>
+        <span id="chapterTitle">פרק 1</span>
+        <span id="levelCounter">שלב 1/6</span>
       </div>
 
       <div class="progress-wrap" aria-label="progress">
@@ -33,9 +30,10 @@
 
     <!-- STORY / DIALOGUE CARD -->
     <section class="story-card">
-      <div class="story-content">
+      <div class="story-icon" id="storyIcon">✨</div>
 
-        <!-- דמות מדברת -->
+      <div class="story-content">
+        <!-- Dialogue block -->
         <div id="characterRow" class="character-row hidden">
           <img id="characterAvatar" class="character-avatar" src="" alt="" />
           <div class="character-bubble">
@@ -44,20 +42,21 @@
           </div>
         </div>
 
-        <!-- שורת מספר / קריין (למשל "המסך בכיתה מתחיל להבהב") -->
+        <!-- Narrator/story line -->
         <p id="story" class="story-text">טוען סיפור...</p>
       </div>
     </section>
 
-    <!-- כפתור "המשך" לדיאלוגים -->
+    <!-- ✅ כפתור המשך לדיאלוגים (גלובלי) -->
     <div class="dialogue-actions">
-      <button id="dialogueNextBtn" class="primary hidden">המשך ▶</button>
+      <button id="dialogueNextBtn" class="hidden">המשך ➜</button>
     </div>
 
-    <!-- MCQ – משימת בחירה -->
+    <!-- MCQ – משימת כישוף -->
     <section id="mcqBox" class="question-box hidden">
       <div class="challenge-header">
-        <div class="challenge-label">משימת בחירה</div>
+        <div class="challenge-label">משימת כישוף</div>
+        <!-- כאן יופיע משפט הסיפור של השלב -->
         <div id="challengeStory" class="challenge-story"></div>
       </div>
 
@@ -66,55 +65,49 @@
 
       <div class="actions">
         <button id="hintBtn" class="ghost">רמז 💡</button>
-        <button id="nextBtn" class="primary hidden">לשלב הבא ▶</button>
+        <button id="nextBtn" class="hidden">לשלב הבא ➜</button>
       </div>
     </section>
 
-    <!-- CODE – משימת קוד פתוחה -->
+    
+    <!-- CODE (תשובה פתוחה, שורת קוד אחת) -->
     <section id="codeBox" class="question-box hidden">
       <div class="challenge-header">
         <div class="challenge-label">משימת קוד</div>
-        <div id="codeStory" class="challenge-story"></div>
       </div>
 
       <p id="codePrompt"></p>
       <input
         id="codeInput"
         class="code-input"
-        placeholder='כתבו כאן שורת קוד אחת...'
+        placeholder="כתוב/כתבי כאן שורת קוד אחת..."
       />
 
       <div class="actions">
-        <button id="runCodeBtn" class="primary">בדיקה ✅</button>
-        <button id="nextFromCodeBtn" class="primary hidden">לשלב הבא ▶</button>
+        <button id="runCodeBtn">בדוק ✅</button>
+        <button id="nextFromCodeBtn" class="hidden">לשלב הבא ➜</button>
       </div>
     </section>
 
-    <!-- DRAG – משימת גרירה -->
+    <!-- DRAG -->
     <section id="dragBox" class="question-box hidden">
-      <div class="challenge-header">
-        <div class="challenge-label">משימת גרירה</div>
-        <div id="dragStory" class="challenge-story"></div>
-      </div>
-
       <p id="dragPrompt"></p>
 
       <div class="drag-area">
         <div>
-          <div class="drag-title">חלקי קוד זמינים</div>
+          <div class="drag-title">חלקים לגרירה</div>
           <div id="dragItems" class="drag-items"></div>
         </div>
 
         <div>
-          <div class="drag-title">שורת הקוד שלי</div>
-          <div class="drag-slot-caption">import [ כאן נכנסת הספרייה ]</div>
+          <div class="drag-title">סדר נכון</div>
           <div id="dragTarget" class="drag-target"></div>
         </div>
       </div>
 
       <div class="actions">
-        <button id="checkDragBtn" class="primary">בדיקה ✅</button>
-        <button id="nextFromDragBtn" class="primary hidden">סיום המודול ▶</button>
+        <button id="checkDragBtn">בדוק ✅</button>
+        <button id="nextFromDragBtn" class="hidden">לשלב הבא ➜</button>
       </div>
     </section>
 
@@ -122,16 +115,11 @@
     <p id="feedback"></p>
   </div>
 
-  <!-- אפקטים קוליים קיימים (אפשר להחליף בקבצי חללית) -->
   <audio id="sndCorrect" src="assets/correct.wav" preload="auto"></audio>
   <audio id="sndWrong" src="assets/wrong.wav" preload="auto"></audio>
   <audio id="sndMagic" src="assets/magic.wav" preload="auto"></audio>
   <audio id="sndClick" src="assets/click.wav" preload="auto"></audio>
   <audio id="sndDialogue" src="assets/dialogue.wav" preload="auto"></audio>
-
-  <!-- בעתיד אפשר להוסיף גם הקלטות דיבור של אוריון:
-  <audio id="voiceOrionScene1" src="assets/voices/orion-scene1.mp3"></audio>
-  -->
 
   <script src="game.js"></script>
 </body>
