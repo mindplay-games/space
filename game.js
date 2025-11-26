@@ -1,14 +1,19 @@
 // ===============================
 // MindPlay – Journey Through the Codeverse (Orion Edition)
+// Supports:
+//   ?chapter=1,2,...  → משחק "מלא" בפרקים
+//   ?lesson=1,2,3,... → משימות מבודדות ל-SCHOLAR
 // types: dialogue / cutscene / mcq / code / drag
-// chapters via ?chapter=1,2,...
 // ===============================
 
-// --- chapter param ---
+// --- URL params ---
 const params = new URLSearchParams(window.location.search);
 const chapterNum = Number(params.get("chapter") || 1);
+const lessonParam = params.get("lesson");
+const lessonNum = lessonParam ? Number(lessonParam) : null;
+const isLessonMode = !!lessonParam;
 
-// --- Chapters data ---
+// --- Chapters data (מצב משחק מלא) ---
 const chapters = {
   // פרק 1 – מודול בסיס החללית
   1: [
@@ -55,7 +60,8 @@ const chapters = {
         mode: "exact",
         patterns: ["print('Engine Start!')", 'print("Engine Start!")']
       },
-      effect: "engine"
+      effect: "engine",
+      successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
     },
 
     // סצנה 4 – כדור האור צריך ערך כדי לזהור (משתנה)
@@ -86,7 +92,7 @@ const chapters = {
       prompt:
         'גררו את שם הספרייה המתאים לאזור "סדר נכון" כדי להשלים את הפקודה:\nimport ____',
       items: ["time", "hour", "clock", "timer"],
-      targetOrder: ["time"], // נדרש שיהיה רק "time" בקופסה הימנית
+      targetOrder: ["time"],
       effect: "library"
     },
 
@@ -105,19 +111,118 @@ const chapters = {
     }
   ],
 
-  // פרקים עתידיים – כוכב המשתנים, התנאים, הלולאות...
+  // פרק 2 – placeholder לכוכב המשתנים (אפשר לפתח בהמשך)
   2: [
     {
       type: "dialogue",
+      icon: "🪐",
       bg: "assets/backgrounds/ch2-variable-planet.png",
       character: "AI אוריון",
       avatar: "assets/characters/ai-orion.png",
-      text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם."
+      text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם.",
+      story: "משימות המשתנים יופיעו כאן בהמשך."
     }
   ]
 };
 
-let levels = chapters[chapterNum] || chapters[1];
+// --- Lessons data (מצב משימות ל-SCHOLAR) ---
+const lessons = {
+  // משימה 1 – print והפעלת המנוע
+  1: [
+    {
+      type: "cutscene",
+      icon: "🖥️",
+      bg: "assets/backgrounds/ch1-classroom-portal.png",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      story: "משימת Print – מפעילים את מנוע החללית.",
+      text:
+        "כדי להמריא, נצטרך לגרום לי לדבר באמצעות print – זה מפעיל את המנוע הפנימי של החללית!",
+      effect: "portal"
+    },
+    {
+      type: "code",
+      icon: "⚙️",
+      bg: "assets/backgrounds/ch1-engine-room.png",
+      story:
+        "כתוב/כתבי פקודת print שמדליקה את המנוע עם ההודעה Engine Start!",
+      prompt: 'כתוב/כתבי שורה אחת שמדפיסה: Engine Start!',
+      hint:
+        'שימו את Engine Start! בתוך גרשיים, למשל: print("Engine Start!")',
+      validator: {
+        mode: "exact",
+        patterns: ["print('Engine Start!')", 'print("Engine Start!")']
+      },
+      effect: "engine",
+      successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
+    }
+  ],
+
+  // משימה 2 – משתנים וכדור האור
+  2: [
+    {
+      type: "cutscene",
+      icon: "💡",
+      bg: "assets/backgrounds/ch1-light-core.png",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      story: "משימת משתנים – הכדור צריך ערך כדי לזרוח.",
+      text:
+        "משתנה הוא פשוט שם + ערך. אם נשים ערך בתוך המשתנה שמפעיל את הכדור – הוא יידלק!",
+      effect: "light"
+    },
+    {
+      type: "mcq",
+      icon: "💡",
+      bg: "assets/backgrounds/ch1-light-core.png",
+      story: 'בחרו את השורה שמדליקה את הכדור: "הכדור צריך ערך כדי לזרוח."',
+      hint: "שם משתנה בפייתון לא יכול להכיל רווח.",
+      question: "איזו שורה תדליק את הכדור?",
+      answers: [
+        { text: "light_power = 30", correct: true },
+        { text: "light power = 30", correct: false },
+        { text: "print = 30", correct: false },
+        { text: "30 = light_power", correct: false }
+      ],
+      effect: "light"
+    }
+  ],
+
+  // משימה 3 – import time וספריית הקוד
+  3: [
+    {
+      type: "cutscene",
+      icon: "🧰",
+      bg: "assets/backgrounds/ch1-library.png",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      story: "משימת ספריות – טוענים את time.",
+      text:
+        "כדי להוסיף יכולות לחללית – אנחנו מייבאים ספריות. time היא ספרייה אמיתית בפייתון שעוזרת לי לעבוד עם זמן.",
+      effect: "library"
+    },
+    {
+      type: "drag",
+      icon: "🧩",
+      bg: "assets/backgrounds/ch1-library.png",
+      story:
+        'גררו את שם הספרייה המתאים כדי להשלים את הפקודה:\nimport ____',
+      prompt:
+        'גררו את המודול הנכון לאזור "סדר נכון" כדי ליצור את:\nimport time',
+      items: ["time", "hour", "clock", "timer"],
+      targetOrder: ["time"],
+      effect: "library"
+    }
+  ]
+};
+
+// --- levels selection ---
+let levels;
+if (isLessonMode) {
+  levels = lessons[lessonNum] || lessons[1];
+} else {
+  levels = chapters[chapterNum] || chapters[1];
+}
 
 // --- state ---
 let levelIndex = 0;
@@ -140,7 +245,7 @@ const answersEl = document.getElementById("answers");
 const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-// ⭐ סיפור משימה בתוך כרטיס המשימה
+// סיפור משימה בתוך כרטיס המשימה
 const challengeStoryEl = document.getElementById("challengeStory");
 
 const codeBox = document.getElementById("codeBox");
@@ -193,9 +298,17 @@ function beep(freq = 440, duration = 0.12) {
 
 // --- helpers ---
 function setTopUI() {
-  // שם הפרק – אפשר לעדכן לטקסט יותר "חללי"
-  chapterTitleEl.textContent = `פרק ${chapterNum} – מודול בסיס החללית`;
-  levelCounterEl.textContent = `סצנה ${levelIndex + 1}/${levels.length}`;
+  if (isLessonMode) {
+    chapterTitleEl.textContent = `משימה ${lessonNum}`;
+  } else {
+    let title = `פרק ${chapterNum}`;
+    if (chapterNum === 1) {
+      title += " – מודול בסיס החללית";
+    }
+    chapterTitleEl.textContent = title;
+  }
+
+  levelCounterEl.textContent = `שלב ${levelIndex + 1}/${levels.length}`;
   const denom = levels.length - 1 || 1;
   progressBarEl.style.width = `${(levelIndex / denom) * 100}%`;
 }
@@ -292,11 +405,11 @@ function renderMCQ(lvl) {
   questionEl.textContent = lvl.question || "";
   answersEl.innerHTML = "";
 
-  lvl.answers.forEach((a) => {
+  (lvl.answers || []).forEach((a) => {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
     btn.textContent = a.text;
-    btn.onclick = () => chooseMCQ(a.correct, btn, lvl);
+    btn.onclick = () => chooseMCQ(a.correct, btn);
     answersEl.appendChild(btn);
   });
 
@@ -311,7 +424,7 @@ function renderMCQ(lvl) {
   };
 }
 
-function chooseMCQ(isCorrect, btnEl, lvl) {
+function chooseMCQ(isCorrect, btnEl) {
   if (locked) return;
   if (isCorrect) {
     locked = true;
@@ -347,7 +460,8 @@ function renderCode(lvl) {
     const ok = validateCode(codeInputEl.value, lvl.validator);
     if (ok) {
       beep(880, 0.12);
-      feedbackEl.textContent = "✅ מעולה! המנוע נדלק.";
+      feedbackEl.textContent =
+        lvl.successText || "✅ מעולה! זה קוד נכון.";
       feedbackEl.className = "correct";
       nextFromCodeBtn.classList.remove("hidden");
       s("sndCorrect");
@@ -375,13 +489,11 @@ function renderDrag(lvl) {
   dragItemsEl.innerHTML = "";
   dragTargetEl.innerHTML = "";
 
-  // chips מקוריים
-  lvl.items.forEach((text, idx) => {
+  (lvl.items || []).forEach((text, idx) => {
     const chip = createDragChip(text, idx);
     dragItemsEl.appendChild(chip);
   });
 
-  // מאפשרים drop בשתי הקופסאות
   enableDropZone(dragItemsEl);
   enableDropZone(dragTargetEl);
 
@@ -394,7 +506,8 @@ function renderDrag(lvl) {
       JSON.stringify(current) === JSON.stringify(lvl.targetOrder || []);
     if (ok) {
       beep(880, 0.12);
-      feedbackEl.textContent = "✅ TIME MODULE LOADED ✓";
+      feedbackEl.textContent =
+        lvl.successText || "✅ סדר מושלם! TIME MODULE LOADED ✓";
       feedbackEl.className = "correct";
       nextFromDragBtn.classList.remove("hidden");
       s("sndCorrect");
@@ -454,7 +567,7 @@ function enableDropZone(zone) {
   });
 }
 
-// --- main ---
+// --- effects handling ---
 const EFFECT_CLASSES = [
   "effect-portal",
   "effect-ship",
@@ -471,6 +584,7 @@ function applyEffect(lvl) {
   }
 }
 
+// --- main ---
 function renderLevel() {
   locked = false;
   resetFeedback();
@@ -479,12 +593,14 @@ function renderLevel() {
   const lvl = levels[levelIndex];
 
   // רקע לפי שלב
-  if (lvl.bg) {
+  if (lvl && lvl.bg) {
     document.body.style.background = `url('${lvl.bg}') center/cover fixed no-repeat #020617`;
   }
 
-  storyIconEl.textContent = lvl.icon || "✨";
-  applyEffect(lvl);
+  storyIconEl.textContent = (lvl && lvl.icon) || "✨";
+  applyEffect(lvl || {});
+
+  if (!lvl) return;
 
   if (lvl.type === "dialogue" || lvl.type === "cutscene") return renderDialogue(lvl);
   if (lvl.type === "code") return renderCode(lvl);
@@ -503,7 +619,10 @@ function goNext() {
     setTimeout(() => gameEl.classList.remove("slide-in"), 350);
 
     levelIndex++;
-    if (levelIndex >= levels.length) levelIndex = 0; // כרגע לופ – אפשר להחליף למסך מפת גלקסיה בהמשך
+    if (levelIndex >= levels.length) {
+      // כרגע לופ חזרה להתחלה – נוח למי שרוצה לחזור על המשימה
+      levelIndex = 0;
+    }
     renderLevel();
   }, 350);
 }
