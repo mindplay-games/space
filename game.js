@@ -1,7 +1,7 @@
 // ===============================
-// MindPlay – מסע הקוד של אוריון
-// סוגי שלבים: dialogue / mcq / code / drag
-// פרקים דרך ?chapter=1,2,...
+// MindPlay – Journey Through the Codeverse (Orion Edition)
+// types: dialogue / cutscene / mcq / code / drag
+// chapters via ?chapter=1,2,...
 // ===============================
 
 // --- chapter param ---
@@ -9,135 +9,114 @@ const params = new URLSearchParams(window.location.search);
 const chapterNum = Number(params.get("chapter") || 1);
 
 // --- Chapters data ---
-// פרק 1: מודול הבסיס של החללית
 const chapters = {
+  // פרק 1 – מודול בסיס החללית
   1: [
-    // סצנה 1 – הכיתה והפורטל
+    // סצנה 1 – הקריאה מהמסך (הכיתה + פורטל)
     {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-classroom.png",
-      story: "כיתה רגילה. מסך המחשב פתאום מתחיל להבהב באור סגול-תכלת.",
-      character: "מספר",
-      avatar: "assets/characters/narrator-screen.png",
-      text: "שורות קוד מסתובבות בספירלה על המסך... ואז הכל נקרע כמו דף דיגיטלי ונפתח פורטל קוד."
-    },
-    {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-code-portal.png",
-      story: "הילדים נשאבים פנימה דרך משושה זוהר עשוי פיקסלים.",
-      character: "מספר",
-      avatar: "assets/characters/narrator-screen.png",
-      text: "אתם מרגישים נפילה קצרה... וכשאתם פוקחים את העיניים – הכל נראה אחרת."
+      type: "cutscene",
+      icon: "🖥️",
+      bg: "assets/backgrounds/ch1-classroom-portal.png",
+      story:
+        "כיתה רגילה בלילה שקט. מחשב אחד מתחיל להבהב באור סגול־תכול, וקוד מסתובב בצורת ספירלה על המסך.",
+      character: "מערכת",
+      avatar: "assets/characters/system-alert.png",
+      text:
+        'SYSTEM OVERRIDE – CODEVERSE PORTAL INITIATED\n"הקוד שלי נקרע… נדרשת עזרה מידית!"',
+      effect: "portal"
     },
 
-    // סצנה 2 – חללית אוריון
+    // סצנה 2 – ברוכים הבאים לחללית אוריון
     {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-orion-bridge.png",
-      story: "אתם עומדים על גשר פיקוד של חללית ענקית שנבנתה מקוד.",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "ברוכים הבאים, צוות צעיר! אני אוריון. מערכת הקוד שלי נפגעה ואני לא מצליחה לנווט בחלל."
-    },
-    {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-orion-bridge.png",
-      story: "",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "יש לנו מסע שלם: כוכב המשתנים, כוכב התנאים, כוכב הלולאות ועוד... אבל קודם נתקן את מודול הבסיס שלי."
+      type: "cutscene",
+      icon: "🚀",
+      bg: "assets/backgrounds/ch1-orion-bridge.png",
+      story:
+        "הקוד על המסך נקרע כמו דף נייר דיגיטלי. נפתח פורטל משושה מפיקסלים זוהרים – והילדים נשאבים אל חללית עצומה העשויה משורות קוד.",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      text:
+        "ברוכים הבאים, צוות צעיר! החללית שלי נפגעה — הקוד שלי מקולקל. אני לא יכולה לנווט בחלל… אתם צריכים לעזור לי לתקן את המודולים שלי. קודם נפעיל את בסיס החללית – בלי זה שום דבר לא עובד!",
+      effect: "ship"
     },
 
-    // סצנה 3 – חדר המנוע, למידה של print
-    {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-engine-room.png",
-      story: "צינורות שקופים מלאים בטקסט עוברים בחדר המנוע הראשי.",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "כאן המנוע הפנימי. כדי להפעיל אותו, אני צריכה פקודת הדפסה מתאימה בלוח הבקרה."
-    },
+    // סצנה 3 – חדר המנוע (משימת print)
     {
       type: "code",
-      bg: "assets/backgrounds/bg-engine-room.png",
-      story: "חדר המנוע הראשי – משימת הפעלה.",
-      codeStory: "כתבו פקודה שמדפיסה את ההודעה Engine Start! כדי להניע את המנוע.",
-      prompt: 'כתבו שורת קוד שמדפיסה את הטקסט: Engine Start!',
+      icon: "⚙️",
+      bg: "assets/backgrounds/ch1-engine-room.png",
+      story:
+        "חדר המנוע הראשי: מנוע ענק בצורת צינור שקוף מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
+      prompt:
+        'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Engine Start!',
+      hint:
+        'השתמשו בפקודת print ובגרשיים, למשל: print("Engine Start!")',
       validator: {
         mode: "exact",
-        patterns: [
-          'print("Engine Start!")',
-          "print('Engine Start!')"
-        ]
-      }
+        patterns: ["print('Engine Start!')", 'print("Engine Start!")']
+      },
+      effect: "engine"
     },
 
-    // סצנה 4 – כדור האור והמשתנים
-    {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-light-core.png",
-      story: "חדר ענק ובמרכזו כדור אור כבוי, כמו שמש קטנה.",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "הכדור הזה צריך ערך כדי לזהור. משתנה הוא פשוט שם שמחזיק ערך. ברגע שנגדיר אותו נכון – הכדור יידלק."
-    },
+    // סצנה 4 – כדור האור צריך ערך כדי לזהור (משתנה)
     {
       type: "mcq",
-      bg: "assets/backgrounds/bg-light-core.png",
-      story: "איזו שורה תדליק את כדור האור?",
-      question: "בחרו את שורת הקוד התקינה:",
-      hint: "שם משתנה לא יכול להכיל רווח, ו-print הוא לא שם טוב למשמרת.",
+      icon: "💡",
+      bg: "assets/backgrounds/ch1-light-core.png",
+      story:
+        "בחדר גדול צף כדור אור ענק, כמו שמש קטנה אבל כבויה. על רצפת הזכוכית כתובה הולוגרמה: \"הכדור צריך ערך כדי לזרוח.\"",
+      hint: "משתנה בפייתון לא יכול להכיל רווח בשם שלו.",
+      question: "איזו שורה תדליק את הכדור?",
       answers: [
         { text: "light_power = 30", correct: true },
         { text: "light power = 30", correct: false },
         { text: "print = 30", correct: false },
-        { text: "light_power : 30", correct: false }
-      ]
+        { text: "30 = light_power", correct: false }
+      ],
+      effect: "light"
     },
 
-    // סצנה 5 – ספריית הקוד, import
-    {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-code-library.png",
-      story: "אתם נכנסים לספריית הקוד של החללית.",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "כאן אני שומרת ספריות – אוספים של כלים מוכנים. כדי להוסיף יכולות חדשות, אנחנו מייבאים ספרייה."
-    },
+    // סצנה 5 – ספריית הקוד של החללית (import time עם Drag)
     {
       type: "drag",
-      bg: "assets/backgrounds/bg-code-library.png",
-      story: "משימת טעינת ספריית הזמן.",
-      dragStory: "גררו את שם הספרייה המתאים כך שהשורה תהיה ספרייה אמיתית בפייתון.",
-      prompt: "איזה שם ספרייה מתאים למשבצת הריקה?",
-      items: ["time", "hour", "clock", "timer", "start_time"],
-      targetOrder: ["time"]
+      icon: "🧰",
+      bg: "assets/backgrounds/ch1-library.png",
+      story:
+        "אתם נכנסים לחדר שנראה כמו מוזיאון של ספריות קוד. קוביות קוד מרחפות – חלקן ריקות (לא נטענו), חלקן זוהרות (נטענו).",
+      prompt:
+        'גררו את שם הספרייה המתאים לאזור "סדר נכון" כדי להשלים את הפקודה:\nimport ____',
+      items: ["time", "hour", "clock", "timer"],
+      targetOrder: ["time"], // נדרש שיהיה רק "time" בקופסה הימנית
+      effect: "library"
     },
 
     // סצנה 6 – סיום מודול הבסיס
     {
-      type: "dialogue",
-      bg: "assets/backgrounds/bg-core-corridor.png",
-      story: "מסדרון קדמי בחללית נדלק באורות כחולים. נתיבי מידע זורמים על הרצפה.",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "עבודה מדהימה, צוות! הפעלתם את המנוע, הדלקתם את כדור האור וטענתם את ספריית הזמן. מודול הבסיס תוקן!"
-    },
+      type: "cutscene",
+      icon: "🌌",
+      bg: "assets/backgrounds/ch1-front-corridor.png",
+      story:
+        "מסדרון קדמי נדלק באורות כחולים. נתיבי מידע זורמים על הרצפה כמו נתיבי לייזר. מסך ענק מציג: CORE MODULE REPAIRED.",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      text:
+        "עבודה מדהימה, צוות! הפעלתם מנוע, הדלקתם אור וטענתם את ספריית הזמן. עכשיו אפשר לצאת אל המסע הבין־כוכבי.\nהיעד הבא במפת הגלקסיה: VARIABLE PRIME – כוכב המשתנים האמיתיים!",
+      effect: "summary"
+    }
+  ],
+
+  // פרקים עתידיים – כוכב המשתנים, התנאים, הלולאות...
+  2: [
     {
       type: "dialogue",
-      bg: "assets/backgrounds/bg-core-corridor.png",
-      story: "",
-      character: "אוריון – AI החללית",
-      avatar: "assets/characters/orion-ai.png",
-      text: "המערכת מודיעה: CORE MODULE REPAIRED. עכשיו אפשר לצאת אל כוכב המשתנים – Variable Prime!"
+      bg: "assets/backgrounds/ch2-variable-planet.png",
+      character: "AI אוריון",
+      avatar: "assets/characters/ai-orion.png",
+      text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם."
     }
   ]
 };
 
-// אפשרות לפרקים עתידיים
-// chapters[2] = [...];
-
-// בחירת הפרק
 let levels = chapters[chapterNum] || chapters[1];
 
 // --- state ---
@@ -146,6 +125,7 @@ let locked = false;
 
 // --- DOM ---
 const storyEl = document.getElementById("story");
+const storyIconEl = document.getElementById("storyIcon");
 
 const characterRow = document.getElementById("characterRow");
 const characterAvatar = document.getElementById("characterAvatar");
@@ -155,21 +135,21 @@ const characterText = document.getElementById("characterText");
 const dialogueNextBtn = document.getElementById("dialogueNextBtn");
 
 const mcqBox = document.getElementById("mcqBox");
-const challengeStoryEl = document.getElementById("challengeStory");
 const questionEl = document.getElementById("question");
 const answersEl = document.getElementById("answers");
 const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 
+// ⭐ סיפור משימה בתוך כרטיס המשימה
+const challengeStoryEl = document.getElementById("challengeStory");
+
 const codeBox = document.getElementById("codeBox");
-const codeStoryEl = document.getElementById("codeStory");
 const codePromptEl = document.getElementById("codePrompt");
 const codeInputEl = document.getElementById("codeInput");
 const runCodeBtn = document.getElementById("runCodeBtn");
 const nextFromCodeBtn = document.getElementById("nextFromCodeBtn");
 
 const dragBox = document.getElementById("dragBox");
-const dragStoryEl = document.getElementById("dragStory");
 const dragPromptEl = document.getElementById("dragPrompt");
 const dragItemsEl = document.getElementById("dragItems");
 const dragTargetEl = document.getElementById("dragTarget");
@@ -183,22 +163,24 @@ const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
 
 // --- sounds ---
-function s(id){
+function s(id) {
   const el = document.getElementById(id);
-  if(el){
+  if (el) {
     el.currentTime = 0;
-    el.play().catch(()=>{});
+    el.play().catch(() => {});
   }
 }
 
 const AudioCtx = window.AudioContext || window.webkitAudioContext;
 let audioCtx = null;
-function ensureAudio(){ if(!audioCtx) audioCtx = new AudioCtx(); }
-function beep(freq=440, duration=0.12){
-  try{
+function ensureAudio() {
+  if (!audioCtx) audioCtx = new AudioCtx();
+}
+function beep(freq = 440, duration = 0.12) {
+  try {
     ensureAudio();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
+    const o = audioCtx.createOscillator(),
+      g = audioCtx.createGain();
     o.connect(g);
     g.connect(audioCtx.destination);
     o.frequency.value = freq;
@@ -206,23 +188,24 @@ function beep(freq=440, duration=0.12){
     g.gain.value = 0.05;
     o.start();
     o.stop(audioCtx.currentTime + duration);
-  }catch(e){}
+  } catch (e) {}
 }
 
 // --- helpers ---
-function setTopUI(){
-  chapterTitleEl.textContent = `פרק ${chapterNum} – מודול הבסיס`;
-  levelCounterEl.textContent = `שלב ${levelIndex+1}/${levels.length}`;
-  const denom = levels.length-1 || 1;
-  progressBarEl.style.width = `${(levelIndex/denom)*100}%`;
+function setTopUI() {
+  // שם הפרק – אפשר לעדכן לטקסט יותר "חללי"
+  chapterTitleEl.textContent = `פרק ${chapterNum} – מודול בסיס החללית`;
+  levelCounterEl.textContent = `סצנה ${levelIndex + 1}/${levels.length}`;
+  const denom = levels.length - 1 || 1;
+  progressBarEl.style.width = `${(levelIndex / denom) * 100}%`;
 }
 
-function resetFeedback(){
+function resetFeedback() {
   feedbackEl.textContent = "";
   feedbackEl.className = "";
 }
 
-function hideAllBoxes(){
+function hideAllBoxes() {
   mcqBox.classList.add("hidden");
   codeBox.classList.add("hidden");
   dragBox.classList.add("hidden");
@@ -232,71 +215,220 @@ function hideAllBoxes(){
   dialogueNextBtn.classList.add("hidden");
 }
 
-function showCharacter(lvl){
+// אין כפילות טקסט: כשיש דמות — מסתירים storyEl הרגיל
+function showCharacter(lvl) {
   const hasChar = !!(lvl.character || lvl.text);
-  if(hasChar){
+  if (hasChar) {
     characterRow.classList.remove("hidden");
     characterName.textContent = lvl.character || "";
     characterText.textContent = lvl.text || "";
 
-    if(lvl.avatar){
+    if (lvl.avatar) {
       characterAvatar.src = lvl.avatar;
       characterAvatar.classList.remove("hidden");
       characterAvatar.alt = lvl.character || "דמות";
-    }else{
+    } else {
       characterAvatar.classList.add("hidden");
     }
 
     storyEl.classList.add("hidden");
-  }else{
+  } else {
     characterRow.classList.add("hidden");
     storyEl.classList.remove("hidden");
   }
 }
 
-function normalize(s){
+function normalize(s) {
   return (s || "")
-    .replace(/\s+/g,"")
-    .replace(/“|”/g,'"')
-    .replace(/‘|’/g,"'")
+    .replace(/\s+/g, "")
+    .replace(/“|”/g, '"')
+    .replace(/‘|’/g, "'")
     .toLowerCase();
 }
 
-function validateCode(userInput, validator){
+function validateCode(userInput, validator) {
   const user = normalize(userInput);
-  if(!validator) return false;
-
-  if(validator.mode === "exact"){
-    return validator.patterns.some(p => user === normalize(p));
+  if (!validator) return false;
+  if (validator.mode === "exact") {
+    return validator.patterns.some((p) => user === normalize(p));
   }
-  if(validator.mode === "contains"){
-    return validator.patterns.every(p => user.includes(normalize(p)));
+  if (validator.mode === "contains") {
+    return validator.patterns.every((p) => user.includes(normalize(p)));
   }
-  if(validator.mode === "regex"){
+  if (validator.mode === "regex") {
     return new RegExp(validator.pattern).test(userInput);
   }
   return false;
 }
 
-// ------- DRAG HELPERS -------
+// --- renderers ---
 
-function createDragChip(text, idx){
+// cutscene + dialogue משתמשים באותו רנדרר
+function renderDialogue(lvl) {
+  hideAllBoxes();
+  gameEl.classList.add("mode-dialogue");
+  gameEl.classList.remove("mode-challenge");
+
+  storyEl.textContent = lvl.story || "";
+  showCharacter(lvl);
+
+  s("sndDialogue");
+  dialogueNextBtn.classList.remove("hidden");
+}
+
+function renderMCQ(lvl) {
+  hideAllBoxes();
+  gameEl.classList.add("mode-challenge");
+  gameEl.classList.remove("mode-dialogue");
+
+  mcqBox.classList.remove("hidden");
+  showCharacter({}); // מסתיר את שורת הדמות
+  storyEl.textContent = "";
+
+  if (challengeStoryEl) {
+    challengeStoryEl.textContent = lvl.story || "";
+  }
+
+  questionEl.textContent = lvl.question || "";
+  answersEl.innerHTML = "";
+
+  lvl.answers.forEach((a) => {
+    const btn = document.createElement("button");
+    btn.className = "answer-btn";
+    btn.textContent = a.text;
+    btn.onclick = () => chooseMCQ(a.correct, btn, lvl);
+    answersEl.appendChild(btn);
+  });
+
+  hintBtn.onclick = () => {
+    if (lvl.hint) {
+      feedbackEl.textContent = "💡 " + lvl.hint;
+      feedbackEl.className = "";
+    } else {
+      feedbackEl.textContent = "אין רמז בשלב הזה 🙂";
+      feedbackEl.className = "";
+    }
+  };
+}
+
+function chooseMCQ(isCorrect, btnEl, lvl) {
+  if (locked) return;
+  if (isCorrect) {
+    locked = true;
+    beep(880, 0.12);
+    btnEl.classList.add("correct");
+    feedbackEl.textContent = "✅ נכון! המערכת מגיבה.";
+    feedbackEl.classList.add("correct");
+    nextBtn.classList.remove("hidden");
+    s("sndCorrect");
+  } else {
+    beep(220, 0.15);
+    btnEl.classList.add("wrong");
+    feedbackEl.textContent = "❌ לא נכון, נסו שוב.";
+    feedbackEl.classList.add("wrong");
+    setTimeout(() => btnEl.classList.remove("wrong"), 450);
+    s("sndWrong");
+  }
+}
+
+function renderCode(lvl) {
+  hideAllBoxes();
+  gameEl.classList.add("mode-challenge");
+  gameEl.classList.remove("mode-dialogue");
+
+  codeBox.classList.remove("hidden");
+  showCharacter({});
+  storyEl.textContent = lvl.story || "";
+  codePromptEl.textContent = lvl.prompt || "כתוב/י קוד:";
+  codeInputEl.value = "";
+  codeInputEl.focus();
+
+  runCodeBtn.onclick = () => {
+    const ok = validateCode(codeInputEl.value, lvl.validator);
+    if (ok) {
+      beep(880, 0.12);
+      feedbackEl.textContent = "✅ מעולה! המנוע נדלק.";
+      feedbackEl.className = "correct";
+      nextFromCodeBtn.classList.remove("hidden");
+      s("sndCorrect");
+    } else {
+      beep(220, 0.15);
+      feedbackEl.textContent = "❌ כמעט… נסו שוב.";
+      feedbackEl.className = "wrong";
+      if (lvl.hint) {
+        feedbackEl.textContent += "\n💡 רמז: " + lvl.hint;
+      }
+      s("sndWrong");
+    }
+  };
+}
+
+function renderDrag(lvl) {
+  hideAllBoxes();
+  gameEl.classList.add("mode-challenge");
+  gameEl.classList.remove("mode-dialogue");
+
+  dragBox.classList.remove("hidden");
+  showCharacter({});
+  storyEl.textContent = lvl.story || "";
+  dragPromptEl.textContent = lvl.prompt || "גרור/י לסדר נכון:";
+  dragItemsEl.innerHTML = "";
+  dragTargetEl.innerHTML = "";
+
+  // chips מקוריים
+  lvl.items.forEach((text, idx) => {
+    const chip = createDragChip(text, idx);
+    dragItemsEl.appendChild(chip);
+  });
+
+  // מאפשרים drop בשתי הקופסאות
+  enableDropZone(dragItemsEl);
+  enableDropZone(dragTargetEl);
+
+  checkDragBtn.onclick = () => {
+    const current = [...dragTargetEl.querySelectorAll(".drag-chip")].map(
+      (c) => c.dataset.value
+    );
+
+    const ok =
+      JSON.stringify(current) === JSON.stringify(lvl.targetOrder || []);
+    if (ok) {
+      beep(880, 0.12);
+      feedbackEl.textContent = "✅ TIME MODULE LOADED ✓";
+      feedbackEl.className = "correct";
+      nextFromDragBtn.classList.remove("hidden");
+      s("sndCorrect");
+    } else {
+      beep(220, 0.15);
+      feedbackEl.textContent =
+        "❌ עדיין לא. נסו לגרור את הספרייה האמיתית של פייתון.";
+      feedbackEl.className = "wrong";
+      s("sndWrong");
+    }
+  };
+}
+
+// ------- helpers for drag -------
+
+function createDragChip(text, idx) {
   const chip = document.createElement("div");
   chip.className = "drag-chip";
   chip.draggable = true;
+
   chip.textContent = text;
   chip.dataset.value = text;
   chip.dataset.id = "chip-" + idx;
 
-  chip.addEventListener("dragstart", (e)=>{
+  chip.addEventListener("dragstart", (e) => {
     e.dataTransfer.setData("text/id", chip.dataset.id);
   });
 
-  chip.addEventListener("click", ()=>{
+  // קליק מעביר לצד השני
+  chip.addEventListener("click", () => {
     const parent = chip.parentElement;
-    if(parent === dragTargetEl){
+    if (parent === dragTargetEl) {
       dragItemsEl.appendChild(chip);
-    }else{
+    } else {
       dragTargetEl.appendChild(chip);
     }
   });
@@ -304,197 +436,79 @@ function createDragChip(text, idx){
   return chip;
 }
 
-function enableDropZone(zone){
-  zone.addEventListener("dragover", e => e.preventDefault());
-  zone.addEventListener("drop", e=>{
+function enableDropZone(zone) {
+  zone.addEventListener("dragover", (e) => e.preventDefault());
+
+  zone.addEventListener("drop", (e) => {
     e.preventDefault();
+
     const id = e.dataTransfer.getData("text/id");
-    if(!id) return;
+    if (!id) return;
+
     const chip = document.querySelector(`[data-id="${id}"]`);
-    if(!chip) return;
-    if(chip.parentElement === zone) return;
+    if (!chip) return;
+
+    if (chip.parentElement === zone) return;
+
     zone.appendChild(chip);
   });
 }
 
-// --- renderers ---
-function renderDialogue(lvl){
-  hideAllBoxes();
-  gameEl.classList.add("mode-dialogue");
-  gameEl.classList.remove("mode-challenge");
-
-  storyEl.textContent = lvl.story || "";
-  showCharacter(lvl);
-  s("sndDialogue");
-  dialogueNextBtn.classList.remove("hidden");
-}
-
-function renderMCQ(lvl){
-  hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
-  mcqBox.classList.remove("hidden");
-  showCharacter({});         // מסתיר את הדמות
-  storyEl.textContent = "";  // אין טקסט עליון במצב משימה
-
-  if(challengeStoryEl){
-    challengeStoryEl.textContent = lvl.story || "";
-  }
-
-  questionEl.textContent = lvl.question || "";
-  answersEl.innerHTML = "";
-
-  lvl.answers.forEach((a)=>{
-    const btn = document.createElement("button");
-    btn.className = "answer-btn";
-    btn.textContent = a.text;
-    btn.onclick = ()=>chooseMCQ(a.correct, btn);
-    answersEl.appendChild(btn);
-  });
-
-  hintBtn.onclick = ()=>{
-    if(lvl.hint){
-      feedbackEl.textContent = "💡 " + lvl.hint;
-      feedbackEl.className = "";
-    }else{
-      feedbackEl.textContent = "אין רמז בשלב הזה 🙂";
-      feedbackEl.className = "";
-    }
-  };
-}
-
-function chooseMCQ(isCorrect, btnEl){
-  if(locked) return;
-  if(isCorrect){
-    locked = true;
-    beep(880,0.12);
-    btnEl.classList.add("correct");
-    feedbackEl.textContent = "✅ נכון! המערכת נדלקה.";
-    feedbackEl.classList.add("correct");
-    nextBtn.classList.remove("hidden");
-    s("sndCorrect");
-  }else{
-    beep(220,0.15);
-    btnEl.classList.add("wrong");
-    feedbackEl.textContent = "❌ לא מדויק. נסו שוב.";
-    feedbackEl.classList.add("wrong");
-    setTimeout(()=>btnEl.classList.remove("wrong"),450);
-    s("sndWrong");
-  }
-}
-
-function renderCode(lvl){
-  hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
-  codeBox.classList.remove("hidden");
-  showCharacter({});
-  storyEl.textContent = "";
-
-  if(codeStoryEl){
-    codeStoryEl.textContent = lvl.codeStory || lvl.story || "";
-  }
-
-  codePromptEl.textContent = lvl.prompt || "כתבו שורת קוד:";
-  codeInputEl.value = "";
-  codeInputEl.focus();
-
-  runCodeBtn.onclick = ()=>{
-    const ok = validateCode(codeInputEl.value, lvl.validator);
-    if(ok){
-      beep(880,0.12);
-      feedbackEl.textContent = "✅ מעולה! המנוע מגיב לקוד שלכם.";
-      feedbackEl.className = "correct";
-      nextFromCodeBtn.classList.remove("hidden");
-      s("sndCorrect");
-    }else{
-      beep(220,0.15);
-      feedbackEl.textContent = "❌ הקוד לא מפעיל את המנוע. נסו שוב.";
-      feedbackEl.className = "wrong";
-      s("sndWrong");
-    }
-  };
-}
-
-function renderDrag(lvl){
-  hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
-  dragBox.classList.remove("hidden");
-  showCharacter({});
-  storyEl.textContent = "";
-
-  dragStoryEl.textContent = lvl.dragStory || lvl.story || "";
-  dragPromptEl.textContent = lvl.prompt || "גררו לחלק המתאים:";
-
-  dragItemsEl.innerHTML = "";
-  dragTargetEl.innerHTML = "";
-
-  lvl.items.forEach((text, idx)=>{
-    const chip = createDragChip(text, idx);
-    dragItemsEl.appendChild(chip);
-  });
-
-  enableDropZone(dragItemsEl);
-  enableDropZone(dragTargetEl);
-
-  checkDragBtn.onclick = ()=>{
-    const current = [...dragTargetEl.querySelectorAll(".drag-chip")]
-      .map(c => c.dataset.value);
-
-    const ok = JSON.stringify(current) === JSON.stringify(lvl.targetOrder);
-    if(ok){
-      beep(880,0.12);
-      feedbackEl.textContent = "✅ מצוין! ספריית הזמן נטענה.";
-      feedbackEl.className = "correct";
-      nextFromDragBtn.classList.remove("hidden");
-      s("sndCorrect");
-    }else{
-      beep(220,0.15);
-      feedbackEl.textContent = "❌ זו לא ספרייה אמיתית בפייתון. נסו ספרייה אחרת.";
-      feedbackEl.className = "wrong";
-      s("sndWrong");
-    }
-  };
-}
-
 // --- main ---
-function renderLevel(){
+const EFFECT_CLASSES = [
+  "effect-portal",
+  "effect-ship",
+  "effect-engine",
+  "effect-light",
+  "effect-library",
+  "effect-summary"
+];
+
+function applyEffect(lvl) {
+  EFFECT_CLASSES.forEach((cls) => gameEl.classList.remove(cls));
+  if (lvl.effect) {
+    gameEl.classList.add(`effect-${lvl.effect}`);
+  }
+}
+
+function renderLevel() {
   locked = false;
   resetFeedback();
   setTopUI();
 
   const lvl = levels[levelIndex];
 
-  // רקע לפי סצנה
-  if(lvl.bg){
-    document.body.style.background =
-      `url('${lvl.bg}') center/cover fixed no-repeat`;
+  // רקע לפי שלב
+  if (lvl.bg) {
+    document.body.style.background = `url('${lvl.bg}') center/cover fixed no-repeat #020617`;
   }
 
-  if(lvl.type === "dialogue") return renderDialogue(lvl);
-  if(lvl.type === "code") return renderCode(lvl);
-  if(lvl.type === "drag") return renderDrag(lvl);
+  storyIconEl.textContent = lvl.icon || "✨";
+  applyEffect(lvl);
+
+  if (lvl.type === "dialogue" || lvl.type === "cutscene") return renderDialogue(lvl);
+  if (lvl.type === "code") return renderCode(lvl);
+  if (lvl.type === "drag") return renderDrag(lvl);
   return renderMCQ(lvl);
 }
 
-function goNext(){
+function goNext() {
   s("sndClick");
-  const frame = document.querySelector(".game");
-  frame.classList.add("slide-out");
 
-  setTimeout(()=>{
-    frame.classList.remove("slide-out");
+  gameEl.classList.add("slide-out");
+
+  setTimeout(() => {
+    gameEl.classList.remove("slide-out");
+    gameEl.classList.add("slide-in");
+    setTimeout(() => gameEl.classList.remove("slide-in"), 350);
+
     levelIndex++;
-    if(levelIndex >= levels.length) levelIndex = 0; // כרגע לולאה אחורה להתחלה
+    if (levelIndex >= levels.length) levelIndex = 0; // כרגע לופ – אפשר להחליף למסך מפת גלקסיה בהמשך
     renderLevel();
-  }, 250);
+  }, 350);
 }
 
-// חיבור כפתורים
+// כפתורי המשך
 nextBtn.onclick = goNext;
 nextFromCodeBtn.onclick = goNext;
 nextFromDragBtn.onclick = goNext;
