@@ -23,11 +23,11 @@ const chapters = {
       icon: "🖥️",
       bg: "assets/backgrounds/ch1-classroom-portal.png",
       story:
-        "כיתה רגילה בלילה שקט. מחשב אחד מתחיל להבהב באור סגול־תכול, וקוד מסתובב בצורת ספירלה על המסך.",
+        "אור ונדב נשאבו למשחק החלל שתכנתו בעצמם!",
       character: "מערכת",
       avatar: "assets/characters/system-alert.png",
       text:
-        'SYSTEM OVERRIDE – CODEVERSE PORTAL INITIATED\n"הקוד שלי נקרע… נדרשת עזרה מידית!"',
+        "אני חייב את עזרתכם!, החללית שלי קורסת!!",
       effect: "portal"
     },
 
@@ -37,11 +37,11 @@ const chapters = {
       icon: "🚀",
       bg: "assets/backgrounds/ch1-orion-bridge.png",
       story:
-        "הקוד על המסך נקרע כמו דף נייר דיגיטלי. נפתח פורטל משושה מפיקסלים זוהרים – והילדים נשאבים אל חללית עצומה העשויה משורות קוד.",
+        "הילדים נשאבים אל חללית עצומה הבנויה מקטעי קוד",
       character: "AI אוריון",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "ברוכים הבאים, צוות צעיר! החללית שלי נפגעה — הקוד שלי מקולקל. אני לא יכולה לנווט בחלל… אתם צריכים לעזור לי לתקן את המערכת שלי. קודם נפעיל את בסיס החללית – בלי זה שום דבר לא עובד!",
+        "ברוכים הבאים צוות צעיר! , אני מיינדפלי הבוט של החללית - אני חייב את עזרתכם בתיקון חדר המנועים של החללית כדי שנוכל להמריא ",
       effect: "ship"
     },
 
@@ -51,7 +51,7 @@ const chapters = {
       icon: "⚙️",
       bg: "assets/backgrounds/ch1-engine-room.png",
       story:
-        "חדר המנוע הראשי: מנוע ענק בצורת צינור שקוף מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
+        "חדר המנוע הראשי: מנוע ענק בצורת 3 צינורות שקופים מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
       prompt:
         'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Start',
       hint:
@@ -61,7 +61,7 @@ const chapters = {
         patterns: ["print('Start')", 'print("Start")']
       },
       effect: "engine",
-      successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
+      successText: "✅ מעולה! הצינור הראשון נדלק ופועל."
     },
 
     // סצנה 4 – כדור האור צריך ערך כדי לזהור (משתנה)
@@ -70,14 +70,14 @@ const chapters = {
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
       story:
-        "בחדר גדול צף כדור אור ענק, כמו שמש קטנה אבל כבויה. על רצפת הזכוכית כתובה הולוגרמה: \"הכדור צריך ערך כדי לזרוח.\"",
-      hint: "משתנה בפייתון לא יכול להכיל רווח בשם שלו.",
-      question: "איזו שורה תדליק את הכדור?",
+        "עכשיו הגיע הזמן לתקן את הצינור השני - בחרו את ההדפסה התקינה מבין האפשרויות ",
+      hint: "הדפסה של טקסט בפייתון חייבת לכלול גרשיים """,
+      question: "איזו שורה תפעיל את הצינור השני? - בחרו את הפקודה התקינה",
       answers: [
-        { text: "light_power = 30", correct: true },
-        { text: "light power = 30", correct: false },
-        { text: "print = 30", correct: false },
-        { text: "30 = light_power", correct: false }
+        { text: "print "second tube start!"", correct: true },
+        { text: "print second tube start!", correct: false },
+        { text: "console.log(second tube start!)", correct: false },
+        { text: "alert ("second tube start!")", correct: false }
       ],
       effect: "light"
     },
@@ -88,11 +88,11 @@ const chapters = {
       icon: "🧰",
       bg: "assets/backgrounds/ch1-library.png",
       story:
-        "אתם נכנסים לחדר שנראה כמו מוזיאון של ספריות קוד. קוביות קוד מרחפות – חלקן ריקות (לא נטענו), חלקן זוהרות (נטענו).",
+        "אתם נהדרים! כמעט סיימנו את המשימה - רק נותר הצינור השלישי כדי שהמנוע שלנו יפעל ונוכל להמריא",
       prompt:
-        'גררו את שם הספרייה המתאים לאזור "סדר נכון" כדי להשלים את הפקודה:\nimport ____',
-      items: ["time", "hour", "clock", "timer"],
-      targetOrder: ["time"],
+        'גררו את שם הפקודה המתאימה לאזור "סדר נכון" כדי להשלים את הפקודה:',
+      items: [""start tube 3"", ")","print("],
+      targetOrder: ["print(", ""start tube 3"", ")"],
       effect: "library"
     },
 
@@ -154,7 +154,7 @@ const lessons = {
         patterns: ["print('Start')", 'print("Start")']
       },
       effect: "engine",
-      successText: "✅ מעולה! המנוע נדלק והצינורות זוהרים."
+      successText: "✅  מעולה! הצינור הראשון נדלק ופועל."
     }
   ],
 
@@ -166,23 +166,23 @@ const lessons = {
       bg: "assets/backgrounds/ch1-light-core.png",
       character: "AI אוריון",
       avatar: "assets/characters/ai-orion.png",
-      story: "משימת משתנים – הכדור צריך ערך כדי לזרוח.",
+      story: "עכשיו הגיע הזמן לתקן את הצינור השני - בחרו את ההדפסה התקינה מבין האפשרויות.",
       text:
-        "משתנה הוא פשוט שם + ערך. אם נשים ערך בתוך המשתנה שמפעיל את הכדור – הוא יידלק!",
+        "איזו שורה תפעיל את הצינור השני? - בחרו את הפקודה התקינה",
       effect: "light"
     },
     {
       type: "mcq",
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
-      story: 'בחרו את השורה שמדליקה את הכדור: "הכדור צריך ערך כדי לזרוח."',
-      hint: "שם משתנה בפייתון לא יכול להכיל רווח.",
-      question: "איזו שורה תדליק את הכדור?",
+      story: 'עכשיו הגיע הזמן לתקן את הצינור השני - בחרו את ההדפסה התקינה מבין האפשרויות.',
+      hint: "הדפסה של טקסט בפייתון חייבת לכלול גרשיים """,
+      question: "איזו שורה תפעיל את הצינור השני? - בחרו את הפקודה התקינה",
       answers: [
-        { text: "light_power = 30", correct: true },
-        { text: "light power = 30", correct: false },
-        { text: "print = 30", correct: false },
-        { text: "30 = light_power", correct: false }
+         { text: "print "second tube start!"", correct: true },
+        { text: "print second tube start!", correct: false },
+        { text: "console.log(second tube start!)", correct: false },
+        { text: "alert ("second tube start!")", correct: false }
       ],
       effect: "light"
     }
@@ -196,9 +196,9 @@ const lessons = {
       bg: "assets/backgrounds/ch1-library.png",
       character: "AI אוריון",
       avatar: "assets/characters/ai-orion.png",
-      story: "משימת ספריות – טוענים את time.",
+      story: "הפעלת הצינור השלישי ",
       text:
-        "כדי להוסיף יכולות לחללית – אנחנו מייבאים ספריות. time היא ספרייה אמיתית בפייתון שעוזרת לי לעבוד עם זמן.",
+        "אתם נהדרים! כמעט סיימנו את המשימה - רק נותר הצינור השלישי כדי שהמנוע שלנו יפעל ונוכל להמריא",
       effect: "library"
     },
     {
@@ -206,11 +206,11 @@ const lessons = {
       icon: "🧩",
       bg: "assets/backgrounds/ch1-library.png",
       story:
-        'גררו את שם הספרייה המתאים כדי להשלים את הפקודה:\nimport ____',
+        'גררו את שם הפקודה המתאימה לאזור "סדר נכון" כדי להשלים את הפקודה:',
       prompt:
-        'גררו את המודול הנכון לאזור "סדר נכון" כדי ליצור את:\nimport time',
-      items: ["time", "hour", "clock", "timer"],
-      targetOrder: ["time"],
+        'גררו את שם הפקודה המתאימה לאזור "סדר נכון" כדי להשלים את הפקודה:',
+      items:[""start tube 3"", ")","print("],
+      targetOrder: ["print(", ""start tube 3"", ")"],
       effect: "library"
     }
   ]
