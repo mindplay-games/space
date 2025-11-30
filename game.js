@@ -419,6 +419,7 @@ function renderDialogue(lvl) {
   storyEl.textContent = lvl.story || "";
   showCharacter(lvl);
   dialogueNextBtn.classList.remove("hidden");
+  s("sndDialogue");
 }
 
 function renderMCQ(lvl) {
@@ -463,11 +464,13 @@ function chooseMCQ(isCorrect, btnEl) {
     feedbackEl.textContent = "✅ נכון!";
     feedbackEl.classList.add("correct");
     nextBtn.classList.remove("hidden");
+    s("sndCorrect");
   } else {
     btnEl.classList.add("wrong");
     feedbackEl.textContent = "❌ לא נכון, נסו שוב.";
     feedbackEl.classList.add("wrong");
     setTimeout(() => btnEl.classList.remove("wrong"), 450);
+    s("sndWrong");
   }
 }
 
@@ -493,9 +496,11 @@ function renderCode(lvl) {
         lvl.successText || "🎉 קוד תקין!";
       feedbackEl.className = "correct";
       nextFromCodeBtn.classList.remove("hidden");
+      s("sndCorrect");
     } else {
       feedbackEl.textContent = "❌ כמעט… נסו שוב.\n💡 " + lvl.hint;
       feedbackEl.className = "wrong";
+      s("sndWrong");
     }
   };
 }
@@ -536,10 +541,12 @@ function renderDrag(lvl) {
         "🎉 בוצע בהצלחה!";
       feedbackEl.className = "correct";
       nextFromDragBtn.classList.remove("hidden");
+      s("sndCorrect");
     } else {
       feedbackEl.textContent =
         "❌ עדיין לא. מקמו מחדש את החלקים.";
       feedbackEl.className = "wrong";
+      s("sndWrong");
     }
   };
 }
