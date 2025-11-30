@@ -398,6 +398,8 @@ button.ghost:hover{
 
 /* DRAG & DROP */
 
+/* DRAG & DROP */
+
 .drag-area{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -421,17 +423,23 @@ button.ghost:hover{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
+  align-items:flex-start;      /* ✅ לא למתוח את הצ'יפים לגובה */
 }
 
+/* צ'יפ של קוד – קומפקטי ומתאים לאורך הטקסט */
 .drag-chip{
-  padding:8px 10px;
+  padding:6px 10px;            /* קצת פחות מרופד */
   background:radial-gradient(circle at top,#1f2937,#020617);
   border:1px solid #4b5563;
-  border-radius:999px;
+  border-radius:12px;          /* ✅ לא אובלי, אלא מלבן מעוגל */
   cursor:grab;
   user-select:none;
   font-size:14px;
+  display:inline-flex;         /* ✅ גובה לפי התוכן */
+  align-items:center;
+  white-space:nowrap;          /* שלא ישבור שורה בתוך הצ'יפ */
 }
+
 #codeInput {
   direction: ltr;
   text-align: left;
