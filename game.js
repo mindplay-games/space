@@ -412,7 +412,10 @@ function validateCode(userInput, validator) {
 
 function renderDialogue(lvl) {
   hideAllBoxes();
+  
   gameEl.classList.add("mode-dialogue");
+  gameEl.classList.remove("mode-challenge");
+
   storyEl.textContent = lvl.story || "";
   showCharacter(lvl);
   dialogueNextBtn.classList.remove("hidden");
