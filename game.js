@@ -9,7 +9,7 @@ const lessonParam = params.get("lesson");
 const lessonNum = lessonParam ? Number(lessonParam) : null;
 const isLessonMode = !!lessonParam;
 
-//מאי 
+//מאי לחילחעלחע 
 // ===============================
 //      CHAPTERS CONTENT
 // ===============================
