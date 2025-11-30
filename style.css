@@ -127,6 +127,12 @@ body{
 .story-content{
   width:100%;
 }
+.appTitle {
+  text-align: right;       /* יישור לימין */
+  margin-top: 12px;        /* קצת רווח מלמעלה */
+  padding-right: 24px;     /* רווח מהצד הימני של הכרטיסייה */
+  font-size: 1.3rem;       /* אופציונלי – גודל נחמד לכותרת */
+}
 
 .story-text{
   margin:0;
