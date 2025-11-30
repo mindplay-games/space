@@ -35,7 +35,7 @@ const chapters = {
       icon: "🚀",
       bg: "assets/backgrounds/ch1-orion-bridge.png",
       story: "הילדים נשאבים אל חללית עצומה הבנויה מקטעי קוד.",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
         "ברוכים הבאים צוות צעיר! אני מיינדפלי, הבוט של החללית – אני חייב את עזרתכם בתיקון חדר המנועים כדי שנוכל להמריא.",
@@ -49,6 +49,8 @@ const chapters = {
       bg: "assets/backgrounds/ch1-engine-room.png",
       story:
         "חדר המנוע הראשי: מנוע ענק בצורת 3 צינורות שקופים מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
+      character: "מיינדפלי הרובוט",
+      text: "כדי להדליק את המנוע, הדפיסו את המילה Start בדיוק כמו שהיא – עם גרשיים ופקודת print.",
       prompt: 'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Start',
       hint: 'השתמשו בפקודת print ובגרשיים, למשל: print("Start")',
       validator: {
@@ -66,6 +68,9 @@ const chapters = {
       bg: "assets/backgrounds/ch1-light-core.png",
       story:
         "עכשיו הגיע הזמן לתקן את הצינור השני – בחרו את ההדפסה התקינה מבין האפשרויות.",
+      character: "מיינדפלי הרובוט",
+      text:
+        "זכרו: טקסט חייב להיות בתוך גרשיים. רק פקודת print עם טקסט בגרשיים תדליק את צינור האור!",
       hint:
         'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("שלום")',
       question: "איזו שורה תפעיל את הצינור השני? בחרו את הפקודה התקינה:",
@@ -85,6 +90,9 @@ const chapters = {
       bg: "assets/backgrounds/ch1-library.png",
       story:
         "אתם נהדרים! כמעט סיימנו את המשימה – רק נותר הצינור השלישי כדי שהמנוע שלנו יפעל ונוכל להמריא.",
+      character: "מיינדפלי הרובוט",
+      text:
+        "הרכיבו את פקודת ה-print הנכונה: קודם שם הפקודה, אחר כך הטקסט בגרשיים, ואז הסוגריים נסגרים.",
       prompt:
         'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה שמפעילה את הצינור השלישי:',
       // החלקים שמופיעים כצ׳יפים
@@ -101,7 +109,7 @@ const chapters = {
       bg: "assets/backgrounds/ch1-front-corridor.png",
       story:
         "מסדרון קדמי נדלק באורות כחולים. נתיבי מידע זורמים על הרצפה כמו נתיבי לייזר. מסך ענק מציג: CORE MODULE REPAIRED.",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
         "עבודה מדהימה, צוות! הפעלתם את כל שלושת הצינורות של המנוע. עכשיו אפשר לצאת אל המסע הבין־כוכבי.\nהיעד הבא במפת הגלקסיה: VARIABLE PRIME – כוכב המשתנים האמיתיים!",
@@ -115,7 +123,7 @@ const chapters = {
       type: "dialogue",
       icon: "🪐",
       bg: "assets/backgrounds/ch2-variable-planet.png",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם.",
       story: "משימות המשתנים יופיעו כאן בהמשך."
@@ -131,7 +139,7 @@ const lessons = {
       type: "cutscene",
       icon: "🖥️",
       bg: "assets/backgrounds/ch1-classroom-portal.png",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       story: "משימת Print – מפעילים את מנוע החללית.",
       text:
@@ -143,6 +151,8 @@ const lessons = {
       icon: "⚙️",
       bg: "assets/backgrounds/ch1-engine-room.png",
       story: "כתוב/כתבי פקודת print שמדליקה את המנוע עם ההודעה Start.",
+      character: "מיינדפלי הרובוט",
+      text: "השתמשו בפקודת print ובגרשיים כדי להדליק את המנוע עם המילה Start.",
       prompt: "כתוב/כתבי שורה אחת שמדפיסה: Start",
       hint: 'שימו את Start בתוך גרשיים, למשל: print("Start")',
       validator: {
@@ -160,7 +170,7 @@ const lessons = {
       type: "cutscene",
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       story:
         "עכשיו הגיע הזמן לתקן את הצינור השני – בחרו את ההדפסה התקינה מבין האפשרויות.",
@@ -173,6 +183,8 @@ const lessons = {
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
       story: "איזו פקודה תדפיס נכון את הטקסט ותפעיל את הצינור השני?",
+      character: "מיינדפלי הרובוט",
+      text: "בחרו את שורת ה-print היחידה שמקיפה את הטקסט בגרשיים.",
       hint:
         'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("Hello")',
       question: "איזו שורה תפעיל את הצינור השני? בחרו את הפקודה התקינה:",
@@ -192,7 +204,7 @@ const lessons = {
       type: "cutscene",
       icon: "🧰",
       bg: "assets/backgrounds/ch1-library.png",
-      character: "AI אוריון",
+      character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       story: "הפעלת הצינור השלישי.",
       text:
@@ -205,6 +217,9 @@ const lessons = {
       bg: "assets/backgrounds/ch1-library.png",
       story:
         'גררו את שם הפקודה המתאימה לאזור "סדר נכון" כדי להשלים את הפקודה שמדפיסה start tube 3.',
+      character: "מיינדפלי הרובוט",
+      text:
+        "סדר נכון בפייתון חשוב: print קודם, אחר כך הטקסט בגרשיים, ואז סוגרים סוגריים.",
       prompt:
         'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה:\nprint("start tube 3")',
       items: ['"start tube 3"', ")", "print("],
@@ -295,6 +310,17 @@ function beep(freq = 440, duration = 0.12) {
 }
 
 // --- helpers ---
+
+// מיפוי שמות דמויות לקבצי האווטאר שלהן
+const CHARACTER_AVATARS = {
+  "מערכת": "assets/characters/system-alert.png",
+  "מיינדפלי הרובוט": "assets/characters/ai-orion.png",
+  // אפשר להוסיף בהמשך:
+  "אור": "assets/characters/or.png",
+  "נדב": "assets/characters/nadav.png"
+  // "דמות נוספת": "assets/characters/another-character.png"
+};
+
 function setTopUI() {
   if (isLessonMode) {
     chapterTitleEl.textContent = `משימה ${lessonNum}`;
@@ -328,20 +354,27 @@ function hideAllBoxes() {
 
 // אין כפילות טקסט: כשיש דמות — מסתירים storyEl הרגיל
 function showCharacter(lvl) {
-  const hasChar = !!(lvl.character || lvl.text);
+  // דמות "מדברת" רק אם יש גם character וגם text
+  const hasChar = !!(lvl.character && lvl.text);
   if (hasChar) {
     characterRow.classList.remove("hidden");
     characterName.textContent = lvl.character || "";
     characterText.textContent = lvl.text || "";
 
-    if (lvl.avatar) {
-      characterAvatar.src = lvl.avatar;
+    // אווטאר מהשלב (lvl.avatar) או מהמיפוי הקבוע לפי שם הדמות
+    const avatarSrc =
+      lvl.avatar ||
+      (lvl.character && CHARACTER_AVATARS[lvl.character]);
+
+    if (avatarSrc) {
+      characterAvatar.src = avatarSrc;
       characterAvatar.classList.remove("hidden");
       characterAvatar.alt = lvl.character || "דמות";
     } else {
       characterAvatar.classList.add("hidden");
     }
 
+    // כשיש דמות – מסתירים את תיבת הסיפור הכללית
     storyEl.classList.add("hidden");
   } else {
     characterRow.classList.add("hidden");
@@ -396,10 +429,19 @@ function renderMCQ(lvl) {
   gameEl.classList.remove("mode-dialogue");
 
   mcqBox.classList.remove("hidden");
-  showCharacter({}); // מסתיר את שורת הדמות
-  storyEl.textContent = "";
+
+  // מנסים להציג דמות מדברת אם יש
+  showCharacter(lvl);
+
+  // אם אין דמות – נשתמש ב-story כטקסט כללי בראש המסך
+  if (!lvl.character || !lvl.text) {
+    storyEl.textContent = lvl.story || "";
+  } else {
+    storyEl.textContent = "";
+  }
 
   if (challengeStoryEl) {
+    // challengeStoryEl יכול להציג את הסיפור של המשימה (לא חובה)
     challengeStoryEl.textContent = lvl.story || "";
   }
 
@@ -451,8 +493,17 @@ function renderCode(lvl) {
   gameEl.classList.remove("mode-dialogue");
 
   codeBox.classList.remove("hidden");
-  showCharacter({});
-  storyEl.textContent = lvl.story || "";
+
+  // דמות מדברת (אם יש)
+  showCharacter(lvl);
+
+  // אם אין דמות – הסיפור הכללי יוצג בחלק העליון
+  if (!lvl.character || !lvl.text) {
+    storyEl.textContent = lvl.story || "";
+  } else {
+    storyEl.textContent = "";
+  }
+
   codePromptEl.textContent = lvl.prompt || "כתוב/י קוד:";
   codeInputEl.value = "";
   codeInputEl.focus();
@@ -484,8 +535,16 @@ function renderDrag(lvl) {
   gameEl.classList.remove("mode-dialogue");
 
   dragBox.classList.remove("hidden");
-  showCharacter({});
-  storyEl.textContent = lvl.story || "";
+
+  // דמות מדברת (אם יש)
+  showCharacter(lvl);
+
+  if (!lvl.character || !lvl.text) {
+    storyEl.textContent = lvl.story || "";
+  } else {
+    storyEl.textContent = "";
+  }
+
   dragPromptEl.textContent = lvl.prompt || "גרור/י לסדר נכון:";
   dragItemsEl.innerHTML = "";
   dragTargetEl.innerHTML = "";
