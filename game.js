@@ -104,7 +104,7 @@ const chapters = {
       avatar: "assets/characters/ai-orion.png",
       text:
         "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי.היעד הבא במפת הגלקסיה: – כוכב המשתנים !",
-      effect: "portal"
+      effect: "summary"
     }
   ],
 
