@@ -1,9 +1,5 @@
 // ===============================
 // MindPlay – Journey Through the Codeverse (Orion Edition)
-// Supports:
-//   ?chapter=1,2,...  → משחק "מלא" בפרקים
-//   ?lesson=1,2,3,... → משימות מבודדות ל-SCHOLAR
-// types: dialogue / cutscene / mcq / code / drag
 // ===============================
 
 // --- URL params ---
@@ -13,14 +9,13 @@ const lessonParam = params.get("lesson");
 const lessonNum = lessonParam ? Number(lessonParam) : null;
 const isLessonMode = !!lessonParam;
 
+
 // ===============================
 //      CHAPTERS CONTENT
 // ===============================
 
 const chapters = {
-  // פרק 1 – תיקון חדר הבקרה
   1: [
-    // סצנה 1 – נשאבים לחללית (הופעת מיינדפלי)
     {
       type: "cutscene",
       icon: "🚀",
@@ -34,7 +29,6 @@ const chapters = {
       effect: "portal"
     },
 
-    // סצנה 3 – קונסולת הבקרה הראשית (CODE – הדפסה ראשונה)
     {
       type: "code",
       icon: "🖥️",
@@ -54,7 +48,6 @@ const chapters = {
       successText: "✅ מעולה! מסך הבקרה הראשי הופעל."
     },
 
-    // סצנה 4 – מסך המשנה של הבקרה (MCQ)
     {
       type: "mcq",
       icon: "💡",
@@ -75,7 +68,6 @@ const chapters = {
       effect: "light"
     },
 
-    // סצנה 5 – לוח הפקודות המשני (DRAG)
     {
       type: "drag",
       icon: "🧩",
@@ -93,7 +85,6 @@ const chapters = {
       successText: "🎉 נהדר! מערכת הבקרה המשנית מופעלת."
     },
 
-    // סצנה 6 – סיום תיקון חדר הבקרה
     {
       type: "cutscene",
       icon: "🌌",
@@ -103,31 +94,17 @@ const chapters = {
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי.היעד הבא במפת הגלקסיה: – כוכב המשתנים !",
-   
-    }
-  ],
-
-  // פרק 2 – placeholder
-  2: [
-    {
-      type: "dialogue",
-      icon: "🪐",
-      bg: "assets/backgrounds/ch2-variable-planet.png",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם.",
-      story: "משימות המשתנים יופיעו כאן בהמשך."
+        "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי. היעד הבא במפת הגלקסיה: כוכב המשתנים!"
     }
   ]
 };
 
+
 // ===============================
-//      LESSONS (SCHOLAR MODE)
+//      LESSONS
 // ===============================
 
 const lessons = {
-  // משימה 1 – הדפסת Start להפעלת חדר הבקרה
   1: [
     {
       type: "cutscene",
@@ -157,89 +134,26 @@ const lessons = {
       effect: "engine",
       successText: "🚀 נהדר! מערכת הבקרה הראשית נדלקה!"
     }
-  ],
-
-  // משימה 2 – מסך הבקרה המשני (MCQ)
-  2: [
-    {
-      type: "cutscene",
-      icon: "💡",
-      bg: "assets/backgrounds/ch1-engine-room.png",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      story: "הפעלת מסך הבקרה המשני.",
-      text:
-        "מסך המשנה עדיין מציג אזהרה. נדרש לבחור את ההדפסה הנכונה כדי לייצב אותו.",
-      effect: "light"
-    },
-    {
-      type: "mcq",
-      icon: "💡",
-      bg: "assets/backgrounds/ch1-engine-room.png",
-      story: "בחרו את פקודת ההדפסה התקינה.",
-      character: "מיינדפלי הרובוט",
-      text: "זכרו – טקסט תמיד חייב להיות בתוך גרשיים!",
-      hint:
-        'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("Hello")',
-      question: "איזו פקודת print מייצבת את המסך?",
-      answers: [
-        { text: 'print("system stable")', correct: true },
-        { text: "print system stable", correct: false },
-        { text: 'console.log("system stable")', correct: false },
-        { text: 'alert("system stable")', correct: false }
-      ],
-      effect: "light"
-    }
-  ],
-
-  // משימה 3 – הרכבת פקודת print להפעלת מסך נוסף
-  3: [
-    {
-      type: "cutscene",
-      icon: "🧰",
-      bg: "assets/backgrounds/ch1-engine-room.png",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      story: "הפעלת לוח הפקודות.",
-      text:
-        "עלינו להרכיב פקודה שתשלים את תיקון חדר הבקרה.",
-      effect: "library"
-    },
-    {
-      type: "drag",
-      icon: "🧩",
-      bg: "assets/backgrounds/ch1-engine-room.png",
-      story: "גררו את החלקים כדי לבנות את פקודת ההדפסה.",
-      character: "מיינדפלי הרובוט",
-      text:
-        "מקמו את החלקים בסדר הנכון כדי ליצור את הפקודה: print('control online')",
-      prompt:
-        'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה:\nprint("control online")',
-      items: ['"control online"', ")", "print("],
-      targetOrder: ["print(", '"control online"', ")"],
-      effect: "library"
-    }
   ]
 };
 
-// ===============================
-//      LEVEL SELECTION LOGIC
-// ===============================
-
-let levels;
-if (isLessonMode) {
-  levels = lessons[lessonNum] || lessons[1];
-} else {
-  levels = chapters[chapterNum] || chapters[1];
-}
 
 // ===============================
-//        GAME ENGINE BELOW
+//      LEVEL SELECTION
 // ===============================
 
-// --- state ---
+let levels = isLessonMode
+  ? lessons[lessonNum] || lessons[1]
+  : chapters[chapterNum] || chapters[1];
+
+
+// ===============================
+//        GAME ENGINE
+// ===============================
+
 let levelIndex = 0;
 let locked = false;
+
 
 // --- DOM ---
 const storyEl = document.getElementById("story");
@@ -280,7 +194,7 @@ const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
 
 
-// --- RTL לכל הטקסטים בעברית ---
+// --- RTL ---
 [storyEl, characterText, codePromptEl, questionEl, challengeStoryEl, feedbackEl].forEach(
   (el) => {
     if (!el) return;
@@ -290,66 +204,7 @@ const gameEl = document.querySelector(".game");
 );
 
 
-
-
-
-// --- sounds ---
-function s(id) {
-  const el = document.getElementById(id);
-  if (el) {
-    el.currentTime = 0;
-    el.play().catch(() => {});
-  }
-}
-
-const AudioCtx = window.AudioContext || window.webkitAudioContext;
-let audioCtx = null;
-function ensureAudio() {
-  if (!audioCtx) audioCtx = new AudioCtx();
-}
-function beep(freq = 440, duration = 0.12) {
-  try {
-    ensureAudio();
-    const o = audioCtx.createOscillator();
-    const g = audioCtx.createGain();
-    o.connect(g);
-    g.connect(audioCtx.destination);
-    o.frequency.value = freq;
-    o.type = "sine";
-    g.gain.value = 0.05;
-    o.start();
-    o.stop(audioCtx.currentTime + duration);
-  } catch (e) {}
-}
-
-// --- helpers ---
-
-const CHARACTER_AVATARS = {
-  "מערכת": "assets/characters/system-alert.png",
-  "מיינדפלי הרובוט": "assets/characters/ai-orion.png",
-  "אור": "assets/characters/or.png",
-  "נדב": "assets/characters/nadav.png"
-};
-
-function setTopUI() {
-  if (isLessonMode) {
-    chapterTitleEl.textContent = `משימה ${lessonNum}`;
-  } else {
-    let title = `פרק ${chapterNum}`;
-    if (chapterNum === 1) title += " – תיקון חדר הבקרה";
-    chapterTitleEl.textContent = title;
-  }
-
-  levelCounterEl.textContent = `שלב ${levelIndex + 1}/${levels.length}`;
-  const denom = levels.length - 1 || 1;
-  progressBarEl.style.width = `${(levelIndex / denom) * 100}%`;
-}
-
-function resetFeedback() {
-  feedbackEl.textContent = "";
-  feedbackEl.className = "";
-}
-
+// --- Helpers ---
 function hideAllBoxes() {
   mcqBox.classList.add("hidden");
   codeBox.classList.add("hidden");
@@ -364,18 +219,14 @@ function showCharacter(lvl) {
   const hasChar = !!(lvl.character && lvl.text);
   if (hasChar) {
     characterRow.classList.remove("hidden");
-    characterName.textContent = lvl.character || "";
-    characterText.textContent = lvl.text || "";
+    characterName.textContent = lvl.character;
+    characterText.textContent = lvl.text;
 
     const avatarSrc =
       lvl.avatar || CHARACTER_AVATARS[lvl.character];
 
-    if (avatarSrc) {
-      characterAvatar.src = avatarSrc;
-      characterAvatar.classList.remove("hidden");
-    } else {
-      characterAvatar.classList.add("hidden");
-    }
+    characterAvatar.src = avatarSrc;
+    characterAvatar.classList.remove("hidden");
 
     storyEl.classList.add("hidden");
   } else {
@@ -384,43 +235,39 @@ function showCharacter(lvl) {
   }
 }
 
-function normalize(s) {
-  return (s || "")
-    .replace(/\s+/g, "")
-    .replace(/“|”/g, '"')
-    .replace(/‘|’/g, "'")
-    .toLowerCase();
+
+// ===============================
+//  FIX: REAL MODE SWITCHING
+// ===============================
+
+function enterDialogueMode() {
+  gameEl.classList.remove("mode-challenge");
+  gameEl.classList.add("mode-dialogue");
 }
 
-function validateCode(userInput, validator) {
-  const user = normalize(userInput);
-  if (!validator) return false;
-
-  if (validator.mode === "exact") {
-    return validator.patterns.some((p) => user === normalize(p));
-  }
-
-  if (validator.mode === "contains") {
-    return validator.patterns.every((p) => user.includes(normalize(p)));
-  }
-
-  if (validator.mode === "regex") {
-    return new RegExp(validator.pattern).test(userInput);
-  }
-  return false;
+function enterChallengeMode() {
+  gameEl.classList.remove("mode-dialogue");
+  gameEl.classList.add("mode-challenge");
 }
+
+
+// ===============================
+// RENDERERS
+// ===============================
 
 function renderDialogue(lvl) {
   hideAllBoxes();
-  gameEl.classList.add("mode-dialogue");
+  enterDialogueMode();
+
   storyEl.textContent = lvl.story || "";
   showCharacter(lvl);
+
   dialogueNextBtn.classList.remove("hidden");
 }
 
 function renderMCQ(lvl) {
   hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
+  enterChallengeMode();
   mcqBox.classList.remove("hidden");
 
   showCharacter(lvl);
@@ -429,13 +276,10 @@ function renderMCQ(lvl) {
     storyEl.textContent = lvl.story || "";
   } else storyEl.textContent = "";
 
-  if (challengeStoryEl) {
-    challengeStoryEl.textContent = lvl.story || "";
-  }
-
+  challengeStoryEl.textContent = lvl.story || "";
   questionEl.textContent = lvl.question || "";
-  answersEl.innerHTML = "";
 
+  answersEl.innerHTML = "";
   (lvl.answers || []).forEach((a) => {
     const btn = document.createElement("button");
     btn.className = "answer-btn";
@@ -445,49 +289,23 @@ function renderMCQ(lvl) {
   });
 
   hintBtn.onclick = () => {
-    feedbackEl.textContent = lvl.hint
-      ? "💡 " + lvl.hint
-      : "אין רמז בשלב הזה 🙂";
-    feedbackEl.className = "";
+    feedbackEl.textContent = lvl.hint || "אין רמז בשלב הזה 🙂";
   };
-}
-
-function chooseMCQ(isCorrect, btnEl) {
-  if (locked) return;
-  if (isCorrect) {
-    locked = true;
-    btnEl.classList.add("correct");
-    feedbackEl.textContent = "✅ נכון!";
-    feedbackEl.classList.add("correct");
-    nextBtn.classList.remove("hidden");
-  } else {
-    btnEl.classList.add("wrong");
-    feedbackEl.textContent = "❌ לא נכון, נסו שוב.";
-    feedbackEl.classList.add("wrong");
-    setTimeout(() => btnEl.classList.remove("wrong"), 450);
-  }
 }
 
 function renderCode(lvl) {
   hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
+  enterChallengeMode();
   codeBox.classList.remove("hidden");
 
   showCharacter(lvl);
-
-  if (!lvl.character || !lvl.text) {
-    storyEl.textContent = lvl.story || "";
-  } else storyEl.textContent = "";
-
   codePromptEl.textContent = lvl.prompt || "";
   codeInputEl.value = "";
-  codeInputEl.focus();
 
   runCodeBtn.onclick = () => {
     const ok = validateCode(codeInputEl.value, lvl.validator);
     if (ok) {
-      feedbackEl.textContent =
-        lvl.successText || "🎉 קוד תקין!";
+      feedbackEl.textContent = lvl.successText || "🎉 קוד תקין!";
       feedbackEl.className = "correct";
       nextFromCodeBtn.classList.remove("hidden");
     } else {
@@ -499,22 +317,17 @@ function renderCode(lvl) {
 
 function renderDrag(lvl) {
   hideAllBoxes();
-  gameEl.classList.add("mode-challenge");
+  enterChallengeMode();
   dragBox.classList.remove("hidden");
 
   showCharacter(lvl);
-
-  if (!lvl.character || !lvl.text) {
-    storyEl.textContent = lvl.story || "";
-  } else storyEl.textContent = "";
 
   dragPromptEl.textContent = lvl.prompt || "";
   dragItemsEl.innerHTML = "";
   dragTargetEl.innerHTML = "";
 
   (lvl.items || []).forEach((text, idx) => {
-    const chip = createDragChip(text, idx);
-    dragItemsEl.appendChild(chip);
+    dragItemsEl.appendChild(createDragChip(text, idx));
   });
 
   enableDropZone(dragItemsEl);
@@ -524,88 +337,50 @@ function renderDrag(lvl) {
     const current = [...dragTargetEl.querySelectorAll(".drag-chip")].map(
       (c) => c.dataset.value
     );
-
     const ok =
       JSON.stringify(current) === JSON.stringify(lvl.targetOrder);
     if (ok) {
-      feedbackEl.textContent =
-        lvl.successText ||
-        "🎉 בוצע בהצלחה!";
+      feedbackEl.textContent = lvl.successText || "🎉 בוצע בהצלחה!";
       feedbackEl.className = "correct";
       nextFromDragBtn.classList.remove("hidden");
     } else {
-      feedbackEl.textContent =
-        "❌ עדיין לא. מקמו מחדש את החלקים.";
+      feedbackEl.textContent = "❌ עדיין לא. מקמו מחדש את החלקים.";
       feedbackEl.className = "wrong";
     }
   };
 }
 
-function createDragChip(text, idx) {
-  const chip = document.createElement("div");
-  chip.className = "drag-chip";
-  chip.draggable = true;
-  chip.textContent = text;
-  chip.dataset.value = text;
-  chip.dataset.id = "chip-" + idx;
 
-  chip.addEventListener("dragstart", (e) =>
-    e.dataTransfer.setData("text/id", chip.dataset.id)
-  );
-
-  chip.addEventListener("click", () => {
-    const parent = chip.parentElement;
-    if (parent === dragTargetEl) dragItemsEl.appendChild(chip);
-    else dragTargetEl.appendChild(chip);
-  });
-
-  return chip;
-}
-
-function enableDropZone(zone) {
-  zone.addEventListener("dragover", (e) => e.preventDefault());
-  zone.addEventListener("drop", (e) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData("text/id");
-    const chip = document.querySelector(`[data-id="${id}"]`);
-    if (chip && chip.parentElement !== zone) zone.appendChild(chip);
-  });
-}
-
-const EFFECT_CLASSES = [
-  "effect-portal",
-  "effect-ship",
-  "effect-engine",
-  "effect-light",
-  "effect-library",
-  "effect-summary"
-];
-
-function applyEffect(lvl) {
-  EFFECT_CLASSES.forEach((cls) => gameEl.classList.remove(cls));
-  if (lvl.effect) gameEl.classList.add(`effect-${lvl.effect}`);
-}
+// ===============================
+// Engine: choose next renderer
+// ===============================
 
 function renderLevel() {
   locked = false;
-  resetFeedback();
-  setTopUI();
+  feedbackEl.textContent = "";
 
   const lvl = levels[levelIndex];
 
-  if (lvl && lvl.bg) {
-    document.body.style.background = `url('${lvl.bg}') center/cover fixed no-repeat #020617`;
-  }
+  if (lvl.bg)
+    document.body.style.background =
+      `url('${lvl.bg}') center/cover fixed no-repeat #020617`;
 
   storyIconEl.textContent = lvl.icon || "✨";
-  applyEffect(lvl);
 
-  if (lvl.type === "dialogue" || lvl.type === "cutscene")
+  if (lvl.type === "cutscene" || lvl.type === "dialogue")
     return renderDialogue(lvl);
-  if (lvl.type === "code") return renderCode(lvl);
-  if (lvl.type === "drag") return renderDrag(lvl);
+  if (lvl.type === "code")
+    return renderCode(lvl);
+  if (lvl.type === "drag")
+    return renderDrag(lvl);
+
   return renderMCQ(lvl);
 }
+
+
+// ===============================
+// Navigation
+// ===============================
 
 function goNext() {
   gameEl.classList.add("slide-out");
@@ -617,6 +392,7 @@ function goNext() {
 
     levelIndex++;
     if (levelIndex >= levels.length) levelIndex = 0;
+
     renderLevel();
   }, 350);
 }
@@ -625,5 +401,10 @@ nextBtn.onclick = goNext;
 nextFromCodeBtn.onclick = goNext;
 nextFromDragBtn.onclick = goNext;
 dialogueNextBtn.onclick = goNext;
+
+
+// ===============================
+// Start
+// ===============================
 
 renderLevel();
