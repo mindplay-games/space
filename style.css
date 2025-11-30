@@ -344,6 +344,10 @@ button:active{
   background:linear-gradient(135deg,#b91c1c,#7f1d1d);
   border-color:#fecaca;
 }
+.answer-btn {
+  direction: rtl;      /* הטקסט בעברית */
+  text-align: right;   /* תשובות מיושרות לימין */
+}
 
 /* כפתורים משניים (רמז) */
 
@@ -428,6 +432,12 @@ button.ghost:hover{
   user-select:none;
   font-size:14px;
 }
+#codeInput {
+  direction: ltr;
+  text-align: left;
+}
+
+
 
 /* פידבק */
 
