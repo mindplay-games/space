@@ -13,111 +13,102 @@ const lessonParam = params.get("lesson");
 const lessonNum = lessonParam ? Number(lessonParam) : null;
 const isLessonMode = !!lessonParam;
 
-// --- Chapters data (מצב משחק מלא) ---
-const chapters = {
-  // פרק 1 – מודול בסיס החללית
-  1: [
-    // סצנה 1 – הקריאה מהמסך (הכיתה + פורטל)
-    {
-      type: "cutscene",
-      icon: "🖥️",
-      bg: "assets/backgrounds/ch1-classroom-portal.png",
-      story: "אור ונדב נשאבו למשחק החלל שתכנתו בעצמם!",
-      character: "מערכת",
-      avatar: "assets/characters/system-alert.png",
-      text: "אני חייב את עזרתכם! החללית שלי קורסת!!",
-      effect: "portal"
-    },
+// ===============================
+//      CHAPTERS CONTENT
+// ===============================
 
-    // סצנה 2 – ברוכים הבאים לחללית
+const chapters = {
+  // פרק 1 – תיקון חדר הבקרה
+  1: [
+    // סצנה 1 – נשאבים לחללית (הופעת מיינדפלי)
     {
       type: "cutscene",
       icon: "🚀",
-      bg: "assets/backgrounds/ch1-orion-bridge.png",
-      story: "הילדים נשאבים אל חללית עצומה הבנויה מקטעי קוד.",
+      bg: "assets/backgrounds/ch1-classroom-portal.png",
+      story:
+        "פורטל אור כחול נפתח בכיתה, ושואב את שני הילדים אל תוך חללית עתידנית ומנצנצת.",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "ברוכים הבאים צוות צעיר! אני מיינדפלי, הבוט של החללית – אני חייב את עזרתכם בתיקון חדר המנועים כדי שנוכל להמריא.",
-      effect: "ship"
+        "ברוכים הבאים צוות צעיר! אני מיינדפלי, הבוט של החללית – אני חייב את עזרתכם בתיקון חדר הבקרה כדי שנוכל להמריא.",
+      effect: "portal"
     },
 
-    // סצנה 3 – חדר המנוע (משימת print)
+    // סצנה 3 – קונסולת הבקרה הראשית (CODE – הדפסה ראשונה)
     {
       type: "code",
-      icon: "⚙️",
+      icon: "🖥️",
       bg: "assets/backgrounds/ch1-engine-room.png",
       story:
-        "חדר המנוע הראשי: מנוע ענק בצורת 3 צינורות שקופים מלא בזרמי טקסט כבויים. ככל שמדפיסים טקסט – הצינורות נדלקים באור אנרגיה.",
+        "לוח קונסולות ענק עומד כבוי. רק שורת פקודות אחת מסוגלת להפעיל אותו מחדש.",
       character: "מיינדפלי הרובוט",
-      text: "כדי להדליק את המנוע, הדפיסו את המילה Start בדיוק כמו שהיא – עם גרשיים ופקודת print.",
-      prompt: 'כתוב/כתבי שורת קוד אחת שמדליקה את המנוע עם ההודעה Start',
+      text:
+        "כדי להפעיל את מסך הבקרה הראשי, הדפיסו את המילה Start. זה יתן ניצוץ ראשוני למערכת.",
+      prompt: "כתוב/כתבי שורת קוד שמדליקה את מערכת הבקרה עם ההודעה Start.",
       hint: 'השתמשו בפקודת print ובגרשיים, למשל: print("Start")',
       validator: {
         mode: "exact",
-        patterns: ["print('Start')", 'print("Start")']
+        patterns: ['print("Start")', "print('Start')"]
       },
       effect: "engine",
-      successText: "✅ מעולה! הצינור הראשון נדלק ופועל."
+      successText: "✅ מעולה! מסך הבקרה הראשי הופעל."
     },
 
-    // סצנה 4 – הצינור השני (MCQ על print טקסט)
+    // סצנה 4 – מסך המשנה של הבקרה (MCQ)
     {
       type: "mcq",
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
-      story:
-        "עכשיו הגיע הזמן לתקן את הצינור השני – בחרו את ההדפסה התקינה מבין האפשרויות.",
+      story: "מסך בקרה נוסף נדלק, אך עדיין מציג אזהרה אדומה.",
       character: "מיינדפלי הרובוט",
       text:
-        "זכרו: טקסט חייב להיות בתוך גרשיים. רק פקודת print עם טקסט בגרשיים תדליק את צינור האור!",
+        "נדרשת פקודת print נוספת כדי לייצב את המערכת. בחרו את ההדפסה התקינה.",
       hint:
         'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("שלום")',
-      question: "איזו שורה תפעיל את הצינור השני? בחרו את הפקודה התקינה:",
+      question: "איזו שורה תייצב את מערכת הבקרה?",
       answers: [
-        { text: 'print("second tube start!")', correct: true },
-        { text: "print second tube start!", correct: false },
-        { text: 'console.log("second tube start!")', correct: false },
-        { text: 'alert("second tube start!")', correct: false }
+        { text: 'print("system stable")', correct: true },
+        { text: "print system stable", correct: false },
+        { text: 'console.log("system stable")', correct: false },
+        { text: 'alert("system stable")', correct: false }
       ],
       effect: "light"
     },
 
-    // סצנה 5 – הצינור השלישי (Drag להרכבת print)
+    // סצנה 5 – לוח הפקודות המשני (DRAG)
     {
       type: "drag",
-      icon: "🧰",
+      icon: "🧩",
       bg: "assets/backgrounds/ch1-library.png",
       story:
-        "אתם נהדרים! כמעט סיימנו את המשימה – רק נותר הצינור השלישי כדי שהמנוע שלנו יפעל ונוכל להמריא.",
+        "בלוח הפקודות מופיעים כרטיסים צפים. יש להרכיב את הפקודה המדויקת כדי להשלים את הפעלת חדר הבקרה.",
       character: "מיינדפלי הרובוט",
       text:
-        "הרכיבו את פקודת ה-print הנכונה: קודם שם הפקודה, אחר כך הטקסט בגרשיים, ואז הסוגריים נסגרים.",
+        "עלינו להרכיב פקודת print מדויקת. מקמו את החלקים בסדר הנכון כדי לייצר את ההדפסה הדרושה.",
       prompt:
-        'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה שמפעילה את הצינור השלישי:',
-      // החלקים שמופיעים כצ׳יפים
-      items: ['"start tube 3"', ")", "print("],
-      // הסדר הנכון של הצ׳יפים
-      targetOrder: ["print(", '"start tube 3"', ")"],
-      effect: "library"
+        'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה:\nprint("control online")',
+      items: ['"control online"', ")", "print("],
+      targetOrder: ["print(", '"control online"', ")"],
+      effect: "library",
+      successText: "🎉 נהדר! מערכת הבקרה המשנית מופעלת."
     },
 
-    // סצנה 6 – סיום מודול הבסיס
+    // סצנה 6 – סיום תיקון חדר הבקרה
     {
       type: "cutscene",
       icon: "🌌",
       bg: "assets/backgrounds/ch1-front-corridor.png",
       story:
-        "מסדרון קדמי נדלק באורות כחולים. נתיבי מידע זורמים על הרצפה כמו נתיבי לייזר. מסך ענק מציג: CORE MODULE REPAIRED.",
+        "אורות כחולים נדלקים בכל החדר. כל המסכים מציגים: CONTROL ROOM — ONLINE.",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "עבודה מדהימה, צוות! הפעלתם את כל שלושת הצינורות של המנוע. עכשיו אפשר לצאת אל המסע הבין־כוכבי.\nהיעד הבא במפת הגלקסיה: VARIABLE PRIME – כוכב המשתנים האמיתיים!",
+        "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי.\nהיעד הבא במפת הגלקסיה: – כוכב המשתנים !",
       effect: "summary"
     }
   ],
 
-  // פרק 2 – placeholder לכוכב המשתנים (אפשר לפתח בהמשך)
+  // פרק 2 – placeholder
   2: [
     {
       type: "dialogue",
@@ -131,9 +122,12 @@ const chapters = {
   ]
 };
 
-// --- Lessons data (מצב משימות ל-SCHOLAR) ---
+// ===============================
+//      LESSONS (SCHOLAR MODE)
+// ===============================
+
 const lessons = {
-  // משימה 1 – print והפעלת המנוע
+  // משימה 1 – הדפסת Start להפעלת חדר הבקרה
   1: [
     {
       type: "cutscene",
@@ -141,18 +135,19 @@ const lessons = {
       bg: "assets/backgrounds/ch1-classroom-portal.png",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
-      story: "משימת Print – מפעילים את מנוע החללית.",
+      story: "משימת Print – מפעילים את חדר הבקרה.",
       text:
-        "כדי להמריא, נצטרך לגרום לי לדבר באמצעות print – זה מפעיל את המנוע הפנימי של החללית!",
+        "כדי להחזיר את חדר הבקרה לפעולה, נצטרך להשתמש בפקודת print עם ההודעה Start.",
       effect: "portal"
     },
     {
       type: "code",
       icon: "⚙️",
       bg: "assets/backgrounds/ch1-engine-room.png",
-      story: "כתוב/כתבי פקודת print שמדליקה את המנוע עם ההודעה Start.",
+      story: "כתוב/כתבי פקודת print שמדליקה את מערכת הבקרה.",
       character: "מיינדפלי הרובוט",
-      text: "השתמשו בפקודת print ובגרשיים כדי להדליק את המנוע עם המילה Start.",
+      text:
+        "הדפיסו את Start כדי לתת למערכת הבקרה את הניצוץ הראשון שלה!",
       prompt: "כתוב/כתבי שורה אחת שמדפיסה: Start",
       hint: 'שימו את Start בתוך גרשיים, למשל: print("Start")',
       validator: {
@@ -160,11 +155,11 @@ const lessons = {
         patterns: ["print('Start')", 'print("Start")']
       },
       effect: "engine",
-      successText: "✅ מעולה! הצינור הראשון נדלק ופועל."
+      successText: "🚀 נהדר! מערכת הבקרה הראשית נדלקה!"
     }
   ],
 
-  // משימה 2 – הצינור השני (MCQ על print טקסט)
+  // משימה 2 – מסך הבקרה המשני (MCQ)
   2: [
     {
       type: "cutscene",
@@ -172,33 +167,32 @@ const lessons = {
       bg: "assets/backgrounds/ch1-light-core.png",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
-      story:
-        "עכשיו הגיע הזמן לתקן את הצינור השני – בחרו את ההדפסה התקינה מבין האפשרויות.",
+      story: "הפעלת מסך הבקרה המשני.",
       text:
-        "זכרו: הדפסה של טקסט בפייתון חייבת גרשיים סביב הטקסט. מוכנים לבחור את הפקודה הנכונה?",
+        "מסך המשנה עדיין מציג אזהרה. נדרש לבחור את ההדפסה הנכונה כדי לייצב אותו.",
       effect: "light"
     },
     {
       type: "mcq",
       icon: "💡",
       bg: "assets/backgrounds/ch1-light-core.png",
-      story: "איזו פקודה תדפיס נכון את הטקסט ותפעיל את הצינור השני?",
+      story: "בחרו את פקודת ההדפסה התקינה.",
       character: "מיינדפלי הרובוט",
-      text: "בחרו את שורת ה-print היחידה שמקיפה את הטקסט בגרשיים.",
+      text: "זכרו – טקסט תמיד חייב להיות בתוך גרשיים!",
       hint:
         'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("Hello")',
-      question: "איזו שורה תפעיל את הצינור השני? בחרו את הפקודה התקינה:",
+      question: "איזו פקודת print מייצבת את המסך?",
       answers: [
-        { text: 'print("second tube start!")', correct: true },
-        { text: "print second tube start!", correct: false },
-        { text: 'console.log("second tube start!")', correct: false },
-        { text: 'alert("second tube start!")', correct: false }
+        { text: 'print("system stable")', correct: true },
+        { text: "print system stable", correct: false },
+        { text: 'console.log("system stable")', correct: false },
+        { text: 'alert("system stable")', correct: false }
       ],
       effect: "light"
     }
   ],
 
-  // משימה 3 – הצינור השלישי (Drag להרכבת print)
+  // משימה 3 – הרכבת פקודת print להפעלת מסך נוסף
   3: [
     {
       type: "cutscene",
@@ -206,36 +200,42 @@ const lessons = {
       bg: "assets/backgrounds/ch1-library.png",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
-      story: "הפעלת הצינור השלישי.",
+      story: "הפעלת לוח הפקודות.",
       text:
-        "אתם נהדרים! כמעט סיימנו את המשימה – רק נותר הצינור השלישי כדי שהמנוע שלנו יפעל ונוכל להמריא.",
+        "עלינו להרכיב פקודה שתשלים את תיקון חדר הבקרה.",
       effect: "library"
     },
     {
       type: "drag",
       icon: "🧩",
       bg: "assets/backgrounds/ch1-library.png",
-      story:
-        'גררו את שם הפקודה המתאימה לאזור "סדר נכון" כדי להשלים את הפקודה שמדפיסה start tube 3.',
+      story: "גררו את החלקים כדי לבנות את פקודת ההדפסה.",
       character: "מיינדפלי הרובוט",
       text:
-        "סדר נכון בפייתון חשוב: print קודם, אחר כך הטקסט בגרשיים, ואז סוגרים סוגריים.",
+        "מקמו את החלקים בסדר הנכון כדי ליצור את הפקודה: print('control online')",
       prompt:
-        'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה:\nprint("start tube 3")',
-      items: ['"start tube 3"', ")", "print("],
-      targetOrder: ["print(", '"start tube 3"', ")"],
+        'גררו את החלקים לאזור "סדר נכון" כדי ליצור את הפקודה:\nprint("control online")',
+      items: ['"control online"', ")", "print("],
+      targetOrder: ["print(", '"control online"', ")"],
       effect: "library"
     }
   ]
 };
 
-// --- levels selection ---
+// ===============================
+//      LEVEL SELECTION LOGIC
+// ===============================
+
 let levels;
 if (isLessonMode) {
   levels = lessons[lessonNum] || lessons[1];
 } else {
   levels = chapters[chapterNum] || chapters[1];
 }
+
+// ===============================
+//        GAME ENGINE BELOW
+// ===============================
 
 // --- state ---
 let levelIndex = 0;
@@ -258,7 +258,6 @@ const answersEl = document.getElementById("answers");
 const hintBtn = document.getElementById("hintBtn");
 const nextBtn = document.getElementById("nextBtn");
 
-// סיפור משימה בתוך כרטיס המשימה
 const challengeStoryEl = document.getElementById("challengeStory");
 
 const codeBox = document.getElementById("codeBox");
@@ -311,14 +310,11 @@ function beep(freq = 440, duration = 0.12) {
 
 // --- helpers ---
 
-// מיפוי שמות דמויות לקבצי האווטאר שלהן
 const CHARACTER_AVATARS = {
   "מערכת": "assets/characters/system-alert.png",
   "מיינדפלי הרובוט": "assets/characters/ai-orion.png",
-  // אפשר להוסיף בהמשך:
   "אור": "assets/characters/or.png",
   "נדב": "assets/characters/nadav.png"
-  // "דמות נוספת": "assets/characters/another-character.png"
 };
 
 function setTopUI() {
@@ -326,9 +322,7 @@ function setTopUI() {
     chapterTitleEl.textContent = `משימה ${lessonNum}`;
   } else {
     let title = `פרק ${chapterNum}`;
-    if (chapterNum === 1) {
-      title += " – מודול בסיס החללית";
-    }
+    if (chapterNum === 1) title += " – תיקון חדר הבקרה";
     chapterTitleEl.textContent = title;
   }
 
@@ -352,29 +346,23 @@ function hideAllBoxes() {
   dialogueNextBtn.classList.add("hidden");
 }
 
-// אין כפילות טקסט: כשיש דמות — מסתירים storyEl הרגיל
 function showCharacter(lvl) {
-  // דמות "מדברת" רק אם יש גם character וגם text
   const hasChar = !!(lvl.character && lvl.text);
   if (hasChar) {
     characterRow.classList.remove("hidden");
     characterName.textContent = lvl.character || "";
     characterText.textContent = lvl.text || "";
 
-    // אווטאר מהשלב (lvl.avatar) או מהמיפוי הקבוע לפי שם הדמות
     const avatarSrc =
-      lvl.avatar ||
-      (lvl.character && CHARACTER_AVATARS[lvl.character]);
+      lvl.avatar || CHARACTER_AVATARS[lvl.character];
 
     if (avatarSrc) {
       characterAvatar.src = avatarSrc;
       characterAvatar.classList.remove("hidden");
-      characterAvatar.alt = lvl.character || "דמות";
     } else {
       characterAvatar.classList.add("hidden");
     }
 
-    // כשיש דמות – מסתירים את תיבת הסיפור הכללית
     storyEl.classList.add("hidden");
   } else {
     characterRow.classList.add("hidden");
@@ -408,40 +396,26 @@ function validateCode(userInput, validator) {
   return false;
 }
 
-// --- renderers ---
-
-// cutscene + dialogue משתמשים באותו רנדרר
 function renderDialogue(lvl) {
   hideAllBoxes();
   gameEl.classList.add("mode-dialogue");
-  gameEl.classList.remove("mode-challenge");
-
   storyEl.textContent = lvl.story || "";
   showCharacter(lvl);
-
-  s("sndDialogue");
   dialogueNextBtn.classList.remove("hidden");
 }
 
 function renderMCQ(lvl) {
   hideAllBoxes();
   gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
   mcqBox.classList.remove("hidden");
 
-  // מנסים להציג דמות מדברת אם יש
   showCharacter(lvl);
 
-  // אם אין דמות – נשתמש ב-story כטקסט כללי בראש המסך
   if (!lvl.character || !lvl.text) {
     storyEl.textContent = lvl.story || "";
-  } else {
-    storyEl.textContent = "";
-  }
+  } else storyEl.textContent = "";
 
   if (challengeStoryEl) {
-    // challengeStoryEl יכול להציג את הסיפור של המשימה (לא חובה)
     challengeStoryEl.textContent = lvl.story || "";
   }
 
@@ -457,13 +431,10 @@ function renderMCQ(lvl) {
   });
 
   hintBtn.onclick = () => {
-    if (lvl.hint) {
-      feedbackEl.textContent = "💡 " + lvl.hint;
-      feedbackEl.className = "";
-    } else {
-      feedbackEl.textContent = "אין רמז בשלב הזה 🙂";
-      feedbackEl.className = "";
-    }
+    feedbackEl.textContent = lvl.hint
+      ? "💡 " + lvl.hint
+      : "אין רמז בשלב הזה 🙂";
+    feedbackEl.className = "";
   };
 }
 
@@ -471,60 +442,43 @@ function chooseMCQ(isCorrect, btnEl) {
   if (locked) return;
   if (isCorrect) {
     locked = true;
-    beep(880, 0.12);
     btnEl.classList.add("correct");
-    feedbackEl.textContent = "✅ נכון! המערכת מגיבה.";
+    feedbackEl.textContent = "✅ נכון!";
     feedbackEl.classList.add("correct");
     nextBtn.classList.remove("hidden");
-    s("sndCorrect");
   } else {
-    beep(220, 0.15);
     btnEl.classList.add("wrong");
     feedbackEl.textContent = "❌ לא נכון, נסו שוב.";
     feedbackEl.classList.add("wrong");
     setTimeout(() => btnEl.classList.remove("wrong"), 450);
-    s("sndWrong");
   }
 }
 
 function renderCode(lvl) {
   hideAllBoxes();
   gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
   codeBox.classList.remove("hidden");
 
-  // דמות מדברת (אם יש)
   showCharacter(lvl);
 
-  // אם אין דמות – הסיפור הכללי יוצג בחלק העליון
   if (!lvl.character || !lvl.text) {
     storyEl.textContent = lvl.story || "";
-  } else {
-    storyEl.textContent = "";
-  }
+  } else storyEl.textContent = "";
 
-  codePromptEl.textContent = lvl.prompt || "כתוב/י קוד:";
+  codePromptEl.textContent = lvl.prompt || "";
   codeInputEl.value = "";
   codeInputEl.focus();
 
   runCodeBtn.onclick = () => {
     const ok = validateCode(codeInputEl.value, lvl.validator);
     if (ok) {
-      beep(880, 0.12);
       feedbackEl.textContent =
-        lvl.successText || "✅ מעולה! זה קוד נכון.";
+        lvl.successText || "🎉 קוד תקין!";
       feedbackEl.className = "correct";
       nextFromCodeBtn.classList.remove("hidden");
-      s("sndCorrect");
     } else {
-      beep(220, 0.15);
-      feedbackEl.textContent = "❌ כמעט… נסו שוב.";
+      feedbackEl.textContent = "❌ כמעט… נסו שוב.\n💡 " + lvl.hint;
       feedbackEl.className = "wrong";
-      if (lvl.hint) {
-        feedbackEl.textContent += "\n💡 רמז: " + lvl.hint;
-      }
-      s("sndWrong");
     }
   };
 }
@@ -532,20 +486,15 @@ function renderCode(lvl) {
 function renderDrag(lvl) {
   hideAllBoxes();
   gameEl.classList.add("mode-challenge");
-  gameEl.classList.remove("mode-dialogue");
-
   dragBox.classList.remove("hidden");
 
-  // דמות מדברת (אם יש)
   showCharacter(lvl);
 
   if (!lvl.character || !lvl.text) {
     storyEl.textContent = lvl.story || "";
-  } else {
-    storyEl.textContent = "";
-  }
+  } else storyEl.textContent = "";
 
-  dragPromptEl.textContent = lvl.prompt || "גרור/י לסדר נכון:";
+  dragPromptEl.textContent = lvl.prompt || "";
   dragItemsEl.innerHTML = "";
   dragTargetEl.innerHTML = "";
 
@@ -563,48 +512,37 @@ function renderDrag(lvl) {
     );
 
     const ok =
-      JSON.stringify(current) === JSON.stringify(lvl.targetOrder || []);
+      JSON.stringify(current) === JSON.stringify(lvl.targetOrder);
     if (ok) {
-      beep(880, 0.12);
       feedbackEl.textContent =
         lvl.successText ||
-        '✅ סדר מושלם! הפקודה print("start tube 3") הורכבה בהצלחה.';
+        "🎉 בוצע בהצלחה!";
       feedbackEl.className = "correct";
       nextFromDragBtn.classList.remove("hidden");
-      s("sndCorrect");
     } else {
-      beep(220, 0.15);
       feedbackEl.textContent =
-        "❌ עדיין לא. נסו להרכיב בדיוק את הפקודה עם print, טקסט בסוגריים וגרשיים.";
+        "❌ עדיין לא. מקמו מחדש את החלקים.";
       feedbackEl.className = "wrong";
-      s("sndWrong");
     }
   };
 }
-
-// ------- helpers for drag -------
 
 function createDragChip(text, idx) {
   const chip = document.createElement("div");
   chip.className = "drag-chip";
   chip.draggable = true;
-
   chip.textContent = text;
   chip.dataset.value = text;
   chip.dataset.id = "chip-" + idx;
 
-  chip.addEventListener("dragstart", (e) => {
-    e.dataTransfer.setData("text/id", chip.dataset.id);
-  });
+  chip.addEventListener("dragstart", (e) =>
+    e.dataTransfer.setData("text/id", chip.dataset.id)
+  );
 
-  // קליק מעביר לצד השני
   chip.addEventListener("click", () => {
     const parent = chip.parentElement;
-    if (parent === dragTargetEl) {
-      dragItemsEl.appendChild(chip);
-    } else {
-      dragTargetEl.appendChild(chip);
-    }
+    if (parent === dragTargetEl) dragItemsEl.appendChild(chip);
+    else dragTargetEl.appendChild(chip);
   });
 
   return chip;
@@ -612,23 +550,14 @@ function createDragChip(text, idx) {
 
 function enableDropZone(zone) {
   zone.addEventListener("dragover", (e) => e.preventDefault());
-
   zone.addEventListener("drop", (e) => {
     e.preventDefault();
-
     const id = e.dataTransfer.getData("text/id");
-    if (!id) return;
-
     const chip = document.querySelector(`[data-id="${id}"]`);
-    if (!chip) return;
-
-    if (chip.parentElement === zone) return;
-
-    zone.appendChild(chip);
+    if (chip && chip.parentElement !== zone) zone.appendChild(chip);
   });
 }
 
-// --- effects handling ---
 const EFFECT_CLASSES = [
   "effect-portal",
   "effect-ship",
@@ -640,12 +569,9 @@ const EFFECT_CLASSES = [
 
 function applyEffect(lvl) {
   EFFECT_CLASSES.forEach((cls) => gameEl.classList.remove(cls));
-  if (lvl.effect) {
-    gameEl.classList.add(`effect-${lvl.effect}`);
-  }
+  if (lvl.effect) gameEl.classList.add(`effect-${lvl.effect}`);
 }
 
-// --- main ---
 function renderLevel() {
   locked = false;
   resetFeedback();
@@ -653,15 +579,12 @@ function renderLevel() {
 
   const lvl = levels[levelIndex];
 
-  // רקע לפי שלב
   if (lvl && lvl.bg) {
     document.body.style.background = `url('${lvl.bg}') center/cover fixed no-repeat #020617`;
   }
 
-  storyIconEl.textContent = (lvl && lvl.icon) || "✨";
-  applyEffect(lvl || {});
-
-  if (!lvl) return;
+  storyIconEl.textContent = lvl.icon || "✨";
+  applyEffect(lvl);
 
   if (lvl.type === "dialogue" || lvl.type === "cutscene")
     return renderDialogue(lvl);
@@ -671,8 +594,6 @@ function renderLevel() {
 }
 
 function goNext() {
-  s("sndClick");
-
   gameEl.classList.add("slide-out");
 
   setTimeout(() => {
@@ -681,19 +602,14 @@ function goNext() {
     setTimeout(() => gameEl.classList.remove("slide-in"), 350);
 
     levelIndex++;
-    if (levelIndex >= levels.length) {
-      // כרגע לופ חזרה להתחלה – נוח למי שרוצה לחזור על המשימה
-      levelIndex = 0;
-    }
+    if (levelIndex >= levels.length) levelIndex = 0;
     renderLevel();
   }, 350);
 }
 
-// כפתורי המשך
 nextBtn.onclick = goNext;
 nextFromCodeBtn.onclick = goNext;
 nextFromDragBtn.onclick = goNext;
 dialogueNextBtn.onclick = goNext;
 
-// התחלה
 renderLevel();
