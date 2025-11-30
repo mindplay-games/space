@@ -279,6 +279,20 @@ const levelCounterEl = document.getElementById("levelCounter");
 const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
 
+
+// --- RTL לכל הטקסטים בעברית ---
+[storyEl, characterText, codePromptEl, questionEl, challengeStoryEl, feedbackEl].forEach(
+  (el) => {
+    if (!el) return;
+    el.dir = "rtl";
+    el.style.textAlign = "right";
+  }
+);
+
+
+
+
+
 // --- sounds ---
 function s(id) {
   const el = document.getElementById(id);
