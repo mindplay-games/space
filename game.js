@@ -58,7 +58,7 @@ const chapters = {
     {
       type: "mcq",
       icon: "💡",
-      bg: "assets/backgrounds/ch1-light-core.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       story: "מסך בקרה נוסף נדלק, אך עדיין מציג אזהרה אדומה.",
       character: "מיינדפלי הרובוט",
       text:
@@ -79,7 +79,7 @@ const chapters = {
     {
       type: "drag",
       icon: "🧩",
-      bg: "assets/backgrounds/ch1-library.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       story:
         "בלוח הפקודות מופיעים כרטיסים צפים. יש להרכיב את הפקודה המדויקת כדי להשלים את הפעלת חדר הבקרה.",
       character: "מיינדפלי הרובוט",
@@ -164,7 +164,7 @@ const lessons = {
     {
       type: "cutscene",
       icon: "💡",
-      bg: "assets/backgrounds/ch1-light-core.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       story: "הפעלת מסך הבקרה המשני.",
@@ -175,7 +175,7 @@ const lessons = {
     {
       type: "mcq",
       icon: "💡",
-      bg: "assets/backgrounds/ch1-light-core.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       story: "בחרו את פקודת ההדפסה התקינה.",
       character: "מיינדפלי הרובוט",
       text: "זכרו – טקסט תמיד חייב להיות בתוך גרשיים!",
@@ -197,7 +197,7 @@ const lessons = {
     {
       type: "cutscene",
       icon: "🧰",
-      bg: "assets/backgrounds/ch1-library.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       story: "הפעלת לוח הפקודות.",
@@ -208,7 +208,7 @@ const lessons = {
     {
       type: "drag",
       icon: "🧩",
-      bg: "assets/backgrounds/ch1-library.png",
+      bg: "assets/backgrounds/ch1-engine-room.png",
       story: "גררו את החלקים כדי לבנות את פקודת ההדפסה.",
       character: "מיינדפלי הרובוט",
       text:
