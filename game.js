@@ -45,10 +45,10 @@ const chapters = {
       text:
         "כדי להפעיל את מסך הבקרה הראשי, הדפיסו את המילה Start. זה יתן ניצוץ ראשוני למערכת.",
       prompt: "כתבו שורת קוד שתגרום למערכת הבקרה להדפיס את המילה start",
-      hint: 'השתמשו בפקודת print ובגרשיים, למשל: print("Start")',
+      hint: 'השתמשו בפקודת print ובגרשיים, למשל: print("start")',
       validator: {
         mode: "exact",
-        patterns: ['print("start")', "print('start')","print('Start')","print("Start")"]
+        patterns: ['print("start")', "print('start')"]
       },
       effect: "engine",
       successText: "✅ מעולה! מסך הבקרה הראשי הופעל."
