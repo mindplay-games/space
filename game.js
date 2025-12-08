@@ -44,11 +44,11 @@ const chapters = {
       character: "מיינדפלי הרובוט",
       text:
         "כדי להפעיל את מסך הבקרה הראשי, הדפיסו את המילה Start. זה יתן ניצוץ ראשוני למערכת.",
-      prompt: "כתוב/כתבי שורת קוד שמדליקה את מערכת הבקרה עם ההודעה Start.",
+      prompt: "כתבו שורת קוד שתגרום למערכת הבקרה להדפיס את המילה start",
       hint: 'השתמשו בפקודת print ובגרשיים, למשל: print("Start")',
       validator: {
         mode: "exact",
-        patterns: ['print("Start")', "print('Start')"]
+        patterns: ['print("start")', "print('start')","print('Start')","print("Start")"]
       },
       effect: "engine",
       successText: "✅ מעולה! מסך הבקרה הראשי הופעל."
@@ -65,7 +65,7 @@ const chapters = {
         "נדרשת פקודת print נוספת כדי לייצב את המערכת. בחרו את ההדפסה התקינה.",
       hint:
         'הדפסה של טקסט בפייתון חייבת לכלול גרשיים סביב הטקסט, למשל: print("שלום")',
-      question: "איזו שורה תייצב את מערכת הבקרה?",
+      question: "בחרו בפקודה הנכונה שתדפיס למערכת system stable",
       answers: [
         { text: 'print("system stable")', correct: true },
         { text: "print system stable", correct: false },
