@@ -54,7 +54,7 @@ body{
 .topbar{
   display:flex;
   flex-direction:column;
-  gap:50px;
+  gap:10px;
   margin-bottom:18px;
 }
 
@@ -70,7 +70,7 @@ body{
 
 .brand h1{
   font-size:28px;
-  margin:0;
+  margin:5px;
   letter-spacing:.3px;
 }
 
