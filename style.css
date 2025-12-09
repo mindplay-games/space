@@ -19,9 +19,9 @@
 html,body{
   margin:0;
   padding:0;
-  /* בדסקטופ משאירים בלי גלילה פנימית באייפריים, במובייל נבטל בהמשך */
+  /* בדסקטופ אין גלילה פנימית, במובייל נחליף למדיה־קווארי */
   overflow-x:hidden;
-  overflow-y:hidden; /* ⬅️ ייגבר במובייל למדיה־קווארי */
+  overflow-y:hidden;
 }
 
 body{
@@ -30,8 +30,8 @@ body{
   color:var(--text);
   display:flex;
   justify-content:center;
-  align-items:flex-start;      /* ⬅️ לא באמצע – מתחילים מלמעלה */
-  min-height:100vh;            /* ⬅️ שיכסה את גובה המסך */
+  align-items:center;      /* מרכז את כל המשחק אנכית */
+  min-height:100vh;
   padding:16px 10px;
 }
 
@@ -58,8 +58,8 @@ body{
 .topbar{
   display:flex;
   flex-direction:column;
-  gap:10px;
-  margin-bottom:18px;
+  gap:12px;              /* קצת יותר מרווח בין השורות */
+  margin-bottom:20px;    /* קצת יותר אוויר מתחת לטופ־בר */
 }
 
 .brand{
@@ -73,7 +73,7 @@ body{
 }
 
 .brand h1{
-  font-size:28px;
+  font-size:26px;        /* מעט קטן יותר, שלא יהיה צפוף */
   margin:0;
   letter-spacing:.3px;
 }
@@ -92,6 +92,7 @@ body{
   border-radius:999px;
   overflow:hidden;
   border:1px solid #020617;
+  margin-top:4px;        /* רווח קטן מעל פס ההתקדמות */
 }
 
 .progress-bar{
@@ -136,7 +137,7 @@ body{
   text-align: right;       /* יישור לימין */
   margin-top: 12px;        /* קצת רווח מלמעלה */
   padding-right: 24px;     /* רווח מהצד הימני של הכרטיסייה */
-  font-size: 1.3rem;       /* אופציונלי – גודל נחמד לכותרת */
+  font-size: 1.3rem;
 }
 
 .story-text{
@@ -427,21 +428,21 @@ button.ghost:hover{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
-  align-items:flex-start;      /* ✅ לא למתוח את הצ'יפים לגובה */
+  align-items:flex-start;
 }
 
 /* צ'יפ של קוד – קומפקטי ומתאים לאורך הטקסט */
 .drag-chip{
-  padding:6px 10px;            /* קצת פחות מרופד */
+  padding:6px 10px;
   background:radial-gradient(circle at top,#1f2937,#020617);
   border:1px solid #4b5563;
-  border-radius:12px;          /* ✅ לא אובלי, אלא מלבן מעוגל */
+  border-radius:12px;
   cursor:grab;
   user-select:none;
   font-size:14px;
-  display:inline-flex;         /* ✅ גובה לפי התוכן */
+  display:inline-flex;
   align-items:center;
-  white-space:nowrap;          /* שלא ישבור שורה בתוך הצ'יפ */
+  white-space:nowrap;
 }
 
 #codeInput {
@@ -474,7 +475,7 @@ button.ghost:hover{
 
 @media (max-width:640px){
 
-  /* ⬅️ במובייל כן מאפשרים גלילה אם התוכן גבוה מהמסך */
+  /* במובייל מאפשרים גלילה אם התוכן גבוה מהמסך */
   html,body{
     overflow-y:auto;
     overflow-x:hidden;
@@ -482,6 +483,7 @@ button.ghost:hover{
 
   body{
     padding:8px 4px;
+    align-items:flex-start;      /* בתחילת הדף, עם אפשרות גלילה */
   }
 
   .game{
