@@ -54,7 +54,7 @@ body{
 .topbar{
   display:flex;
   flex-direction:column;
-  gap:10px;
+  gap:50px;
   margin-bottom:18px;
 }
 
