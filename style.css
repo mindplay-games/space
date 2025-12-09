@@ -224,7 +224,7 @@ body{
 .dialogue-actions{
   display:flex;
   justify-content:flex-end;
-  margin:8px 0 4px;
+  margin:8px 0 50px;
 }
 
 /* === QUESTION CARD (MCQ + CODE + DRAG) === */
