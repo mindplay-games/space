@@ -16,26 +16,30 @@
   box-sizing:border-box;
 }
 
-/* בסיס כללי – ללא flex על body כדי שיעבוד טוב בכל הטמעות */
+/* בסיס כללי – עובד טוב גם בדפדפן רגיל וגם בתוך iframe/Wix */
 html,
 body{
   margin:0;
   padding:0;
+  width:100%;
+  max-width:100%;
   background:var(--bg);
   color:var(--text);
-  overflow-x:hidden;     /* שלא תהיה גלילה לרוחב */
+  overflow-x:hidden;     /* לא לתת גלילה לרוחב */
+  overflow-y:auto;       /* אם התוכן גבוה – אפשר לגלול */ 
   font-family:"Rubik",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 
-/* הגוף רק נותן רווח מסביב – הפריסה עצמה על .game */
+/* הגוף נותן רק רווח מסביב, המשחק עצמו במרכז */
 body{
   padding:16px 10px;
 }
 
 /* === GAME FRAME === */
-/* הקפסולה של המשחק – במרכז המסך עם רווח נעים מלמעלה ולמטה */
+
 .game{
-  width:min(900px,100%);
+  width:100%;
+  max-width:900px;
   background:radial-gradient(circle at top,rgba(15,23,42,0.96),rgba(15,23,42,0.90));
   border-radius:32px;
   padding:16px 20px 18px;
@@ -43,7 +47,7 @@ body{
   border:1px solid rgba(148,163,184,0.35);
   backdrop-filter:blur(14px);
   position:relative;
-  margin:40px auto 32px;   /* מרכז אופקית ונותן מרווח אנכי */
+  margin:32px auto 24px;   /* מרכז אופקית, רווח נעים מלמעלה ולמטה */
 }
 
 /* מצב משימה – הקלף הוא הפוקוס, מסתירים story-card */
@@ -71,7 +75,7 @@ body{
 }
 
 .brand h1{
-  font-size:26px;        /* קצת יותר קטן כדי שלא יהיה צפוף */
+  font-size:26px;        /* מעט קטן יותר כדי שלא יהיה צפוף */
   margin:0;
   letter-spacing:.3px;
 }
@@ -109,4 +113,121 @@ body{
   background:var(--panel-soft);
   border:1px solid rgba(30,64,175,0.4);
   padding:12px 16px;
-  border-radi
+  border-radius:18px;
+  margin-bottom:10px;
+  animation:fadeIn .35s ease;
+}
+
+.story-icon{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  background:radial-gradient(circle at top,#1d283a,#020617);
+  border:1px solid var(--line);
+  border-radius:14px;
+  font-size:22px;
+  flex:0 0 auto;
+  display:none;
+}
+
+.story-content{
+  width:100%;
+}
+
+.appTitle {
+  text-align:right;
+  margin-top:12px;
+  padding-right:24px;
+  font-size:1.3rem;
+}
+
+.story-text{
+  margin:0;
+  line-height:1.5;
+  font-size:16px;
+}
+
+/* CHARACTER ROW – הדמות המדברת */
+
+.character-row{
+  display:flex;
+  gap:12px;
+  align-items:flex-end;
+  margin-top:10px;
+  margin-bottom:8px;
+  padding:10px 12px;
+  border-radius:18px;
+  background:radial-gradient(circle at top left,rgba(15,23,42,0.95),rgba(15,23,42,0.85));
+  border:1px solid rgba(148,163,184,0.4);
+  box-shadow:0 14px 40px rgba(15,23,42,0.9);
+}
+
+/* תמונת דמות */
+.character-avatar{
+  width:110px;
+  height:110px;
+  max-width:32vw;
+  object-fit:contain;
+  border-radius:22px;
+  background:#020617;
+  border:3px solid rgba(56,189,248,0.8);
+  flex:0 0 auto;
+  box-shadow:
+    0 0 22px rgba(56, 189, 248, 0.75),
+    0 0 40px rgba(129, 140, 248, 0.45);
+}
+
+/* בועת דיבור לטקסט של הדמות */
+.character-bubble{
+  flex:1;
+  padding:8px 12px 10px;
+  border-radius:16px;
+  background:rgba(15,23,42,0.95);
+  border:1px solid rgba(148,163,184,0.55);
+  box-shadow:0 10px 28px rgba(15,23,42,0.95);
+  position:relative;
+  background:radial-gradient(
+    circle at top left,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.9)
+  );
+  border-color:rgba(56, 189, 248, 0.75);
+  box-shadow:
+    0 0 18px rgba(56, 189, 248, 0.45),
+    0 18px 40px rgba(15, 23, 42, 0.95);
+}
+
+/* סריקה הולוגרפית על הבועה */
+.character-bubble::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.18) 45%,
+    rgba(56, 189, 248, 0.03) 55%,
+    transparent 100%
+  );
+  animation:holoScan 4s linear infinite;
+  mix-blend-mode:screen;
+  opacity:0.65;
+}
+
+.character-name{
+  font-weight:600;
+  color:#e2e8f0;
+  margin-bottom:4px;
+  font-size:16px;
+}
+
+.character-text{
+  line-height:1.5;
+  font-size:15px;
+}
+
+/* כפתור "המשך" מתחת לדיאלוג */
+
+.dialogue-actions{
+  display:fl
