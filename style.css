@@ -449,8 +449,7 @@ button.ghost:hover{
 .video-wrapper{
   position: relative;
   width: 100%;
-  /* היה: padding-top: 56.25%;  יחס 16:9 */
-  padding-top: 45%;           /* יחס יותר "רחב" – נראה קולנועי יותר */
+  padding-top: 56.25%;   /* יחס 16:9 */
   border-radius: 18px;
   overflow: hidden;
   background: #000;
