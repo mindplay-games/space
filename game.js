@@ -3,7 +3,7 @@
 // Supports:
 //   ?chapter=1,2,...  → משחק "מלא" בפרקים
 //   ?lesson=1,2,3,... → משימות מבודדות ל-SCHOLAR
-// types: dialogue / cutscene / mcq / code / drag
+// types: dialogue / cutscene / mcq / code / drag / video
 // ===============================
 
 // --- URL params ---
@@ -20,6 +20,19 @@ const isLessonMode = !!lessonParam;
 const chapters = {
   // פרק 1 – תיקון חדר הבקרה
   1: [
+    // 🎬 שלב וידאו – לפני שנשאבים לחללית
+    {
+      type: "video",
+      icon: "🎬",
+      bg: "assets/backgrounds/ch1-classroom-portal.png",
+      story: "צפו בסרטון הפתיחה ואז נתחיל לתקן את חדר הבקרה.",
+      character: "מיינדפלי הרובוט",
+      avatar: "assets/characters/ai-orion.png",
+      // שימי כאן את קישור ה-embed מ-Vimeo (src מה-iframe)
+      videoUrl: "https://player.vimeo.com/video/XXXXXXXXX?title=0&byline=0&portrait=0",
+      effect: "portal"
+    },
+
     // סצנה 1 – נשאבים לחללית (הופעת מיינדפלי)
     {
       type: "cutscene",
@@ -103,8 +116,7 @@ const chapters = {
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       text:
-        "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי.היעד הבא במפת הגלקסיה: – כוכב המשתנים !",
-   
+        "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי. היעד הבא במפת הגלקסיה: כוכב המשתנים!"
     }
   ],
 
@@ -127,7 +139,6 @@ const chapters = {
 // ===============================
 
 const lessons = {
-  // משימה 1 – הדפסת Start להפעלת חדר הבקרה
   1: [
     {
       type: "cutscene",
@@ -159,7 +170,6 @@ const lessons = {
     }
   ],
 
-  // משימה 2 – מסך הבקרה המשני (MCQ)
   2: [
     {
       type: "cutscene",
@@ -192,7 +202,6 @@ const lessons = {
     }
   ],
 
-  // משימה 3 – הרכבת פקודת print להפעלת מסך נוסף
   3: [
     {
       type: "cutscene",
@@ -273,12 +282,17 @@ const dragTargetEl = document.getElementById("dragTarget");
 const checkDragBtn = document.getElementById("checkDragBtn");
 const nextFromDragBtn = document.getElementById("nextFromDragBtn");
 
+const videoBox = document.getElementById("videoBox");
+const videoStoryEl = document.getElementById("videoStory");
+const lessonVideoEl = document.getElementById("lessonVideo");
+const nextFromVideoBtn = document.getElementById("nextFromVideoBtn");
+const skipVideoBtn = document.getElementById("skipVideoBtn");
+
 const feedbackEl = document.getElementById("feedback");
 const chapterTitleEl = document.getElementById("chapterTitle");
 const levelCounterEl = document.getElementById("levelCounter");
 const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
-
 
 // --- RTL לכל הטקסטים בעברית ---
 [storyEl, characterText, codePromptEl, questionEl, challengeStoryEl, feedbackEl].forEach(
@@ -288,10 +302,6 @@ const gameEl = document.querySelector(".game");
     el.style.textAlign = "right";
   }
 );
-
-
-
-
 
 // --- sounds ---
 function s(id) {
@@ -354,10 +364,17 @@ function hideAllBoxes() {
   mcqBox.classList.add("hidden");
   codeBox.classList.add("hidden");
   dragBox.classList.add("hidden");
+  if (videoBox) videoBox.classList.add("hidden");
+
   nextBtn.classList.add("hidden");
   nextFromCodeBtn.classList.add("hidden");
   nextFromDragBtn.classList.add("hidden");
   dialogueNextBtn.classList.add("hidden");
+
+  // לעצור את הווידאו כשעוברים שלב
+  if (lessonVideoEl) {
+    lessonVideoEl.src = "";
+  }
 }
 
 function showCharacter(lvl) {
@@ -582,6 +599,36 @@ function enableDropZone(zone) {
   });
 }
 
+function renderVideo(lvl) {
+  hideAllBoxes();
+  gameEl.classList.add("mode-challenge");
+  if (videoBox) videoBox.classList.remove("hidden");
+
+  showCharacter(lvl);
+
+  if (videoStoryEl) {
+    videoStoryEl.textContent = lvl.story || "";
+  } else {
+    storyEl.textContent = lvl.story || "";
+  }
+
+  if (lessonVideoEl && lvl.videoUrl) {
+    lessonVideoEl.src = lvl.videoUrl;
+  }
+
+  if (nextFromVideoBtn) {
+    nextFromVideoBtn.onclick = () => {
+      goNext();
+    };
+  }
+
+  if (skipVideoBtn) {
+    skipVideoBtn.onclick = () => {
+      goNext();
+    };
+  }
+}
+
 const EFFECT_CLASSES = [
   "effect-portal",
   "effect-ship",
@@ -610,6 +657,7 @@ function renderLevel() {
   storyIconEl.textContent = lvl.icon || "✨";
   applyEffect(lvl);
 
+  if (lvl.type === "video") return renderVideo(lvl);
   if (lvl.type === "dialogue" || lvl.type === "cutscene")
     return renderDialogue(lvl);
   if (lvl.type === "code") return renderCode(lvl);
@@ -634,6 +682,7 @@ function goNext() {
 nextBtn.onclick = goNext;
 nextFromCodeBtn.onclick = goNext;
 nextFromDragBtn.onclick = goNext;
+if (nextFromVideoBtn) nextFromVideoBtn.onclick = goNext;
 dialogueNextBtn.onclick = goNext;
 
 renderLevel();
