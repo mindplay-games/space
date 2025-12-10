@@ -29,7 +29,7 @@ body{
   color:var(--text);
   display:flex;
   justify-content:center;
-  align-items:center;       /* ⬅️ חדש – מרכז אנכי */
+  align-items:center;       /* ⬅️ מרכז אנכי בדסקטופ */
   min-height:100vh;  
   padding:26px 20px;
 }
@@ -130,11 +130,12 @@ body{
 .story-content{
   width:100%;
 }
+
 .appTitle {
-  text-align: right;       /* יישור לימין */
-  margin-top: 12px;        /* קצת רווח מלמעלה */
-  padding-right: 24px;     /* רווח מהצד הימני של הכרטיסייה */
-  font-size: 1.3rem;       /* אופציונלי – גודל נחמד לכותרת */
+  text-align: right;
+  margin-top: 12px;
+  padding-right: 24px;
+  font-size: 1.3rem;
 }
 
 .story-text{
@@ -230,7 +231,7 @@ body{
   margin:8px 0 50px;
 }
 
-/* === QUESTION CARD (MCQ + CODE + DRAG) === */
+/* === QUESTION CARD (MCQ + CODE + DRAG + VIDEO) === */
 
 .question-box{
   margin-top:18px;
@@ -242,8 +243,6 @@ body{
   backdrop-filter:blur(18px);
   animation:slideUp .35s ease;
 }
-
-/* כותרת משימה */
 
 .challenge-header{
   display:flex;
@@ -347,12 +346,13 @@ button:active{
   background:linear-gradient(135deg,#b91c1c,#7f1d1d);
   border-color:#fecaca;
 }
+
 .answer-btn {
-  direction: rtl;      /* הטקסט בעברית */
-  text-align: right;   /* תשובות מיושרות לימין */
+  direction: rtl;
+  text-align: right;
 }
 
-/* כפתורים משניים (רמז) */
+/* כפתורים משניים (רמז/Skip) */
 
 button.ghost{
   background:transparent;
@@ -401,8 +401,6 @@ button.ghost:hover{
 
 /* DRAG & DROP */
 
-/* DRAG & DROP */
-
 .drag-area{
   display:grid;
   grid-template-columns:1fr 1fr;
@@ -426,21 +424,20 @@ button.ghost:hover{
   display:flex;
   flex-wrap:wrap;
   gap:8px;
-  align-items:flex-start;      /* ✅ לא למתוח את הצ'יפים לגובה */
+  align-items:flex-start;
 }
 
-/* צ'יפ של קוד – קומפקטי ומתאים לאורך הטקסט */
 .drag-chip{
-  padding:6px 10px;            /* קצת פחות מרופד */
+  padding:6px 10px;
   background:radial-gradient(circle at top,#1f2937,#020617);
   border:1px solid #4b5563;
-  border-radius:12px;          /* ✅ לא אובלי, אלא מלבן מעוגל */
+  border-radius:12px;
   cursor:grab;
   user-select:none;
   font-size:14px;
-  display:inline-flex;         /* ✅ גובה לפי התוכן */
+  display:inline-flex;
   align-items:center;
-  white-space:nowrap;          /* שלא ישבור שורה בתוך הצ'יפ */
+  white-space:nowrap;
 }
 
 #codeInput {
@@ -448,7 +445,25 @@ button.ghost:hover{
   text-align: left;
 }
 
+/* === VIDEO WRAPPER (VIMEO) === */
 
+.video-wrapper{
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;   /* יחס 16:9 */
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  margin-top: 8px;
+}
+
+.video-wrapper iframe{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
 
 /* פידבק */
 
@@ -471,17 +486,22 @@ button.ghost:hover{
   display:none;
 }
 
-/* RESPONSIVE */
+/* === RESPONSIVE – מובייל מלא בתוך iframe === */
 
 @media (max-width:640px){
   body{
     align-items:flex-start;
-    padding:12px 6px;
+    /* היה: padding:12px 6px; */
+    padding:8px 0 16px;   /* בלי padding צדדי – שייתן כל הפיקסלים לרוחב המשחק */
   }
 
   .game{
-    padding:14px 12px 16px;
-    border-radius:26px;
+    width:100vw;          /* יתפרש על כל רוחב המסך בתוך ה-iframe */
+    max-width:100vw;
+    margin:0;             /* שלא יתכווץ בגלל מרג'ינים */
+    border-radius:0;      /* אפשר לשטח את הפינות במובייל אם צריך כל טיפת רוחב */
+    box-shadow:none;      /* מוריד צל כבד שגונב קצת מקום מסביב */
+    padding:14px 10px 16px; /* טיפונת פחות רוחב בכרית הצדדים */
   }
 
   .brand h1{
@@ -600,8 +620,6 @@ button.ghost:hover{
 .game.slide-out{
   animation:sceneOut 0.35s ease-in;
 }
-
-/* === KEYFRAMES נוספים === */
 
 @keyframes holoScan{
   from{transform:translateX(-40%);}
