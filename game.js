@@ -25,7 +25,7 @@ const chapters = {
       type: "video",
       icon: "🎬",
       bg: "assets/backgrounds/ch1-classroom-portal.png",
-      story: "צפו בסרטון הפתיחה ואז נתחיל לתקן את חדר הבקרה.",
+      story: "",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       // שימי כאן את קישור ה-embed מ-Vimeo (src מה-iframe)
