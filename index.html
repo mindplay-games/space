@@ -52,11 +52,31 @@
       <button id="dialogueNextBtn" class="hidden">המשך ➜</button>
     </div>
 
+    <!-- VIDEO LESSON (VIMEO לפני הפרק) -->
+    <section id="videoBox" class="question-box hidden">
+      <div class="challenge-header">
+        <div id="videoStory" class="challenge-story"></div>
+      </div>
+
+      <div class="video-wrapper">
+        <iframe
+          id="lessonVideo"
+          src=""
+          frameborder="0"
+          allow="autoplay; fullscreen; picture-in-picture"
+          allowfullscreen
+        ></iframe>
+      </div>
+
+      <div class="actions">
+        <button id="skipVideoBtn" class="ghost">דלג על הסרטון ⏩</button>
+        <button id="nextFromVideoBtn">להתחיל את הפרק ➜</button>
+      </div>
+    </section>
+
     <!-- MCQ – משימת כישוף -->
     <section id="mcqBox" class="question-box hidden">
       <div class="challenge-header">
-        <!-- <div class="challenge-label"></div> -->
-        <!-- כאן יופיע משפט הסיפור של השלב -->
         <div id="challengeStory" class="challenge-story"></div>
       </div>
 
@@ -69,11 +89,9 @@
       </div>
     </section>
 
-    
     <!-- CODE (תשובה פתוחה, שורת קוד אחת) -->
     <section id="codeBox" class="question-box hidden">
       <div class="challenge-header">
-        <!-- <div class="challenge-label">משימת קוד</div> -->
       </div>
 
       <p id="codePrompt"></p>
