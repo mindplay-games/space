@@ -29,7 +29,7 @@ const chapters = {
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       // שימי כאן את קישור ה-embed מ-Vimeo (src מה-iframe)
-      videoUrl: "https://vimeo.com/1144873124?share=copy&fl=sv&fe=ci#t=0",
+      videoUrl: "https://player.vimeo.com/video/1144873124?title=0&byline=0&portrait=0",
       effect: "portal"
     },
 
