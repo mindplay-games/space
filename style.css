@@ -446,11 +446,11 @@ button.ghost:hover{
 }
 
 /* === VIDEO WRAPPER (VIMEO) === */
-
 .video-wrapper{
   position: relative;
   width: 100%;
-  padding-top: 56.25%;   /* יחס 16:9 */
+  /* היה: padding-top: 56.25%;  יחס 16:9 */
+  padding-top: 45%;           /* יחס יותר "רחב" – נראה קולנועי יותר */
   border-radius: 18px;
   overflow: hidden;
   background: #000;
