@@ -16,19 +16,17 @@
   box-sizing:border-box;
 }
 
-/* =========================== */
-/*   תיקון חיתוכים + גלילה    */
-/* =========================== */
+/* -------------------------------------- */
+/* FIX: לא חותך למעלה, שומר עיצוב מקורי   */
+/* -------------------------------------- */
 
-html, body {
-  margin: 0;
-  padding: 0;
-
-  overflow-x: hidden;
-  overflow-y: hidden;      /* בדסקטופ: אין גלילה */
-  
-  height: 100%;
-  min-height: 100%;
+html,body{
+  margin:0;
+  padding:0;
+  overflow-x:hidden;
+  overflow-y:auto;     /* <<— לאפשר גלילה אם צריך */
+  height:auto;         /* לא לנעול את הגובה */
+  min-height:100%;
 }
 
 body{
@@ -36,16 +34,15 @@ body{
   background:var(--bg);
   color:var(--text);
 
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;   /* חשוב! לא center — מונע חיתוך */
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;   /* <<— היה center וגרם לחיתוך */
   
+  min-height:100vh;
   padding:26px 20px;
 }
 
-/* ====================== */
-/*         GAME FRAME     */
-/* ====================== */
+/* === GAME FRAME === */
 
 .game{
   width:min(900px,100%);
@@ -58,13 +55,12 @@ body{
   position:relative;
 }
 
+/* מצב משימה – הקלף הוא הפוקוס, מסתירים story-card */
 .game.mode-challenge .story-card{
   display:none;
 }
 
-/* ====================== */
-/*        TOP BAR         */
-/* ====================== */
+/* TOP BAR */
 
 .topbar{
   display:flex;
@@ -79,9 +75,13 @@ body{
   gap:10px;
 }
 
+.brand .emoji{
+  font-size:32px;
+}
+
 .brand h1{
   font-size:28px;
-  margin:0;
+  margin:5px;
   letter-spacing:.3px;
 }
 
@@ -108,9 +108,7 @@ body{
   transition:width .35s ease;
 }
 
-/* ====================== */
-/*     STORY / DIALOGUE   */
-/* ====================== */
+/* STORY CARD (למצב דיאלוג) */
 
 .story-card{
   display:flex;
@@ -127,15 +125,25 @@ body{
 .story-icon{
   width:44px;
   height:44px;
+  display:grid;
+  place-items:center;
   background:radial-gradient(circle at top,#1d283a,#020617);
   border:1px solid var(--line);
   border-radius:14px;
   font-size:22px;
+  flex:0 0 auto;
   display:none;
 }
 
 .story-content{
   width:100%;
+}
+
+.appTitle {
+  text-align: right;
+  margin-top: 12px;
+  padding-right: 24px;
+  font-size: 1.3rem;
 }
 
 .story-text{
@@ -144,7 +152,7 @@ body{
   font-size:16px;
 }
 
-/* CHARACTER ROW */
+/* CHARACTER ROW – הדמות המדברת */
 
 .character-row{
   display:flex;
@@ -162,24 +170,53 @@ body{
 .character-avatar{
   width:110px;
   height:110px;
+  max-width:32vw;
   object-fit:contain;
   border-radius:22px;
   background:#020617;
   border:3px solid rgba(56,189,248,0.8);
+  flex:0 0 auto;
+  box-shadow:
+    0 0 22px rgba(56, 189, 248, 0.75),
+    0 0 40px rgba(129, 140, 248, 0.45);
 }
 
 .character-bubble{
   flex:1;
   padding:8px 12px 10px;
   border-radius:16px;
-  background:radial-gradient(circle at top left,rgba(15,23,42,0.96),rgba(15,23,42,0.9));
-  border:1px solid rgba(56,189,248,0.55);
+  background:rgba(15,23,42,0.95);
+  border:1px solid rgba(148,163,184,0.55);
+  box-shadow:0 10px 28px rgba(15,23,42,0.95);
+  position:relative;
+  background:radial-gradient(circle at top left,
+    rgba(15, 23, 42, 0.96),
+    rgba(15, 23, 42, 0.9)
+  );
+  border-color:rgba(56, 189, 248, 0.75);
+}
+
+.character-bubble::before{
+  content:"";
+  position:absolute;
+  inset:-40%;
+  background:linear-gradient(
+    120deg,
+    transparent 0%,
+    rgba(56, 189, 248, 0.18) 45%,
+    rgba(56, 189, 248, 0.03) 55%,
+    transparent 100%
+  );
+  animation:holoScan 4s linear infinite;
+  mix-blend-mode:screen;
+  opacity:0.65;
 }
 
 .character-name{
   font-weight:600;
   color:#e2e8f0;
   margin-bottom:4px;
+  font-size:16px;
 }
 
 .character-text{
@@ -187,20 +224,165 @@ body{
   font-size:15px;
 }
 
+/* כפתור "המשך" מתחת לדיאלוג */
+
 .dialogue-actions{
   display:flex;
   justify-content:flex-end;
   margin:8px 0 50px;
 }
 
-/* ====================== */
-/*        VIDEO BOX       */
-/* ====================== */
+/* === QUESTION CARD (MCQ + CODE + DRAG + VIDEO) === */
 
+.question-box{
+  margin-top:18px;
+  background:linear-gradient(135deg,rgba(15,23,42,0.94),rgba(15,23,42,0.82));
+  padding:18px 20px 20px;
+  border-radius:24px;
+  border:1px solid rgba(148,163,184,0.55);
+  box-shadow:0 20px 60px rgba(15,23,42,0.95);
+  backdrop-filter:blur(18px);
+  animation:slideUp .35s ease;
+}
+
+.challenge-header{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  margin-bottom:10px;
+}
+
+.challenge-label{
+  align-self:flex-start;
+  padding:2px 12px;
+  border-radius:999px;
+  font-size:11px;
+  letter-spacing:.15em;
+  text-transform:uppercase;
+  background:rgba(59,130,246,0.16);
+  border:1px solid rgba(59,130,246,0.65);
+  color:#bfdbfe;
+}
+
+.challenge-story{
+  font-size:14px;
+  color:var(--text-soft);
+}
+
+#question,
+#codePrompt{
+  margin:6px 0 10px;
+  white-space:pre-wrap;
+  line-height:1.6;
+  font-size:16px;
+}
+
+/* תשובות – קלפים */
+
+.answers{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:10px 14px;
+  margin-top:8px;
+}
+
+button{
+  border:none;
+  cursor:pointer;
+  font-family:"Rubik",system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  font-size:15px;
+  padding:10px 18px;
+  border-radius:999px;
+  font-weight:500;
+  color:#0f172a;
+  background:linear-gradient(135deg,#4ade80,#22c55e);
+  box-shadow:0 10px 25px rgba(21,128,61,0.55);
+  transition:
+    transform .08s ease,
+    box-shadow .12s ease,
+    filter .15s ease,
+    background .15s ease;
+}
+
+button:hover{
+  transform:translateY(-1px);
+  filter:brightness(1.05);
+  box-shadow:0 14px 30px rgba(21,128,61,0.65);
+}
+
+button:active{
+  transform:translateY(0);
+  box-shadow:0 8px 18px rgba(21,128,61,0.55);
+}
+
+.answer-btn{
+  background:radial-gradient(circle at top,#1f2937,#020617);
+  border:1px solid #374151;
+  color:#e5e7eb;
+  text-align:center;
+  padding:12px 14px;
+}
+
+.answer-btn:hover{
+  background:radial-gradient(circle at top,#111827,#020617);
+  border-color:#38bdf8;
+}
+
+.answer-btn.correct{
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  border-color:#bbf7d0;
+  color:#022c22;
+}
+
+.answer-btn.wrong{
+  background:linear-gradient(135deg,#b91c1c,#7f1d1d);
+  border-color:#fecaca;
+}
+
+/* DRAG */
+.drag-area{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:12px;
+  margin-top:8px;
+}
+
+.drag-title{
+  font-size:14px;
+  color:var(--text-soft);
+  margin-bottom:6px;
+}
+
+.drag-items,
+.drag-target{
+  min-height:120px;
+  padding:10px;
+  border:1px dashed rgba(148,163,184,0.7);
+  background:rgba(15,23,42,0.9);
+  border-radius:14px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+
+.drag-chip{
+  padding:6px 10px;
+  background:radial-gradient(circle at top,#1f2937,#020617);
+  border:1px solid #4b5563;
+  border-radius:12px;
+  cursor:grab;
+}
+
+#codeInput {
+  direction: ltr;
+  text-align: left;
+}
+
+/* VIDEO WRAPPER */
 .video-wrapper{
   position: relative;
   width: 100%;
-  padding-top: 65%;   /* יחס משופר שמונע חיתוך וידאו */
+  padding-top: 56.25%;
   border-radius: 18px;
   overflow: hidden;
   background: #000;
@@ -215,40 +397,30 @@ body{
   border: none;
 }
 
-/* ====================== */
-/*      QUESTION BOX      */
-/* ====================== */
-
-.question-box{
-  margin-top:18px;
-  background:linear-gradient(135deg,rgba(15,23,42,0.94),rgba(15,23,42,0.82));
-  padding:18px 20px 20px;
-  border-radius:24px;
-  border:1px solid rgba(148,163,184,0.55);
+#feedback{
+  margin-top:10px;
+  min-height:22px;
+  font-size:15px;
+  font-weight:600;
 }
 
-/* ====================== */
-/*       MOBILE MODE      */
-/* ====================== */
+.correct{ color:var(--good);}
+.wrong{ color:var(--bad);}
+.hidden{ display:none; }
 
+/* MOBILE FIXES */
 @media (max-width:640px){
-
-  html, body {
-    overflow-y: auto !important;  /* גלילה במובייל ב-Wix */
-    height: auto;
-    min-height: 100vh;
-  }
 
   body{
     display:block;
     padding:14px 10px 18px;
+    align-items:flex-start;
   }
 
   .game{
     width:100%;
-    margin:8px auto 10px;
-    border-radius:22px;
     padding:20px 14px 24px;
+    margin:8px auto;
   }
 
   .brand h1{
@@ -260,20 +432,36 @@ body{
     height:80px;
   }
 
-  .video-wrapper{
-    padding-top: 85%;  /* וידאו גבוה יותר במובייל */
+  .question-box{
+    padding:14px 12px 16px;
   }
 
   .answers{
     grid-template-columns:1fr;
   }
+
+  .drag-area{
+    grid-template-columns:1fr;
+  }
 }
 
-/* ====================== */
-/*       ANIMATIONS       */
-/* ====================== */
-
+/* ANIMATIONS */
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(6px);}
   to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes slideUp{
+  from{opacity:0; transform:translateY(10px);}
+  to{opacity:1; transform:translateY(0);}
+}
+
+@keyframes holoScan{
+  from{transform:translateX(-40%);}
+  to{transform:translateX(40%);}
+}
+
+@keyframes sceneIn{
+  from{opacity:0; transform:translateY(8px) scale(0.99);}
+  to{opacity:1; transform:translateY(0) scale(1);}
 }
