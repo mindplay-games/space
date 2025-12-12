@@ -32,7 +32,6 @@ const chapters = {
       videoUrl: "https://player.vimeo.com/video/1145219479?title=0&byline=0&portrait=0",
       effect: "portal"
     },
-
     // סצנה 1 – נשאבים לחללית (הופעת מיינדפלי)
     {
       type: "cutscene",
