@@ -21,7 +21,7 @@ html,body{
   padding:0;
   height:100%;
   overflow-x:hidden;
-  overflow-y:auto;  
+  overflow-y:auto;
 }
 
 body{
@@ -245,6 +245,7 @@ body{
   box-shadow:0 20px 60px rgba(15,23,42,0.95);
   backdrop-filter:blur(18px);
   animation:slideUp .35s ease;
+  overflow: visible; /* ✅ מונע תחושת "חיתוך" סביב וידאו/כפתורים */
 }
 
 .challenge-header{
@@ -443,19 +444,22 @@ button.ghost:hover{
   white-space:nowrap;
 }
 
-#codeInput {
-  direction: ltr;
-  text-align: left;
+#codeInput{
+  direction:ltr;
+  text-align:left;
 }
 
 /* === VIDEO WRAPPER (VIMEO) === */
+/* ✅ תיקון: נותנים ל-wrapper יחס גובה קבוע, אחרת iframe absolute "נחתך" */
 .video-wrapper{
   position: relative;
   width: 100%;
+  aspect-ratio: 16 / 9;     /* ✅ הכי חשוב */
   border-radius: 18px;
   overflow: hidden;
   background: #000;
   margin-top: 8px;
+  margin-bottom: 12px;      /* ✅ רווח קטן לכפתורים */
 }
 
 .video-wrapper iframe{
@@ -463,7 +467,15 @@ button.ghost:hover{
   inset: 0;
   width: 100%;
   height: 100%;
-  border: none;
+  border: 0;
+}
+
+/* ✅ fallback לדפדפנים שלא תומכים ב-aspect-ratio */
+@supports not (aspect-ratio: 16 / 9){
+  .video-wrapper{
+    height: 0;
+    padding-top: 56.25%; /* 16:9 */
+  }
 }
 
 /* פידבק */
@@ -566,7 +578,6 @@ button.ghost:hover{
   }
 }
 
-
 /* ANIMATIONS בסיסיות */
 
 @keyframes fadeIn{
@@ -614,80 +625,4 @@ button.ghost:hover{
 
 .game.effect-portal::before{
   box-shadow:
-    0 0 0 1px rgba(56,189,248,0.4),
-    0 0 32px rgba(168,85,247,0.7),
-    0 0 80px rgba(79,70,229,0.85);
-  animation:portalPulse 1.4s ease-out;
-}
-
-.game.effect-ship::before{
-  box-shadow:
-    0 0 0 1px rgba(59,130,246,0.5),
-    0 0 40px rgba(59,130,246,0.7),
-    0 0 90px rgba(8,47,73,0.9);
-  animation:shipIn 1s ease-out;
-}
-
-.game.effect-engine::before{
-  box-shadow:
-    0 0 0 1px rgba(34,197,94,0.5),
-    0 0 40px rgba(34,197,94,0.7),
-    0 0 80px rgba(22,163,74,0.9);
-}
-
-.game.effect-light::before{
-  box-shadow:
-    0 0 0 1px rgba(250,204,21,0.5),
-    0 0 40px rgba(250,204,21,0.7),
-    0 0 80px rgba(245,158,11,0.9);
-}
-
-.game.effect-library::before{
-  box-shadow:
-    0 0 0 1px rgba(56,189,248,0.45),
-    0 0 36px rgba(129,140,248,0.8),
-    0 0 70px rgba(30,64,175,0.9);
-}
-
-.game.effect-summary::before{
-  box-shadow:
-    0 0 0 1px rgba(96,165,250,0.45),
-    0 0 36px rgba(236,72,153,0.7),
-    0 0 80px rgba(129,140,248,0.9);
-}
-
-/* === אנימציות מעבר של סצנות (Cutscene) === */
-
-.game.slide-in{
-  animation:sceneIn 0.35s ease-out;
-}
-
-.game.slide-out{
-  animation:sceneOut 0.35s ease-in;
-}
-
-@keyframes holoScan{
-  from{transform:translateX(-40%);}
-  to{transform:translateX(40%);}
-}
-
-@keyframes portalPulse{
-  0%{transform:scale(1); opacity:0.4;}
-  40%{transform:scale(1.02); opacity:1;}
-  100%{transform:scale(1); opacity:0.7;}
-}
-
-@keyframes shipIn{
-  0%{transform:translateY(8px); opacity:0;}
-  100%{transform:translateY(0); opacity:1;}
-}
-
-@keyframes sceneIn{
-  from{opacity:0; transform:translateY(8px) scale(0.99);}
-  to{opacity:1; transform:translateY(0) scale(1);}
-}
-
-@keyframes sceneOut{
-  from{opacity:1; transform:translateY(0) scale(1);}
-  to{opacity:0; transform:translateY(-8px) scale(0.99);}
-}
+    0 0 0 1px rgba(56,189,248,0
