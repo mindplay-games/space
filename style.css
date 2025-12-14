@@ -622,7 +622,13 @@ button.ghost:hover{
 }
 
 /* === אפקטי פורטל / חללית / מנוע === */
+/* כשיש וידאו/משימות – לא צריך רווח של דיאלוג */
+.game.mode-challenge .dialogue-actions{
+  display:none;
+  margin:0;
+}
 
 .game.effect-portal::before{
   box-shadow:
-    0 0 0 1px rgba(56,189,248,0
+    0 0 0 1px rgba(56,189,248,0)
+  
