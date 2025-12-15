@@ -616,6 +616,7 @@ function renderVideo(lvl) {
   }
 
   if (nextFromVideoBtn) {
+    nextFromVideoBtn.textContent = lvl.nextLabel || "המשך ➜";
     nextFromVideoBtn.onclick = () => {
       goNext();
     };
