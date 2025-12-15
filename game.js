@@ -665,7 +665,7 @@ function renderLevel() {
 }
 
 function goNext() {
-  gameEl.classList.add("slide-out");
+ gameEl.classList.add("slide-out");
 
   setTimeout(() => {
     gameEl.classList.remove("slide-out");
@@ -673,7 +673,28 @@ function goNext() {
     setTimeout(() => gameEl.classList.remove("slide-in"), 350);
 
     levelIndex++;
-    if (levelIndex >= levels.length) levelIndex = 0;
+
+    // ✅ אם נגמר הפרק:
+    if (levelIndex >= levels.length) {
+      // ב-SCHOLAR נשאיר לופ רגיל
+      if (isLessonMode) {
+        levelIndex = 0;
+        renderLevel();
+        return;
+      }
+
+      // בפרקים: לעבור לפרק הבא (אם קיים), אחרת לחזור לפרק 1
+      const nextChapter = chapterNum + 1;
+      const hasNext = !!chapters[nextChapter];
+
+      const url = new URL(window.location.href);
+      url.searchParams.delete("lesson");
+      url.searchParams.set("chapter", hasNext ? nextChapter : 1);
+
+      window.location.href = url.toString();
+      return;
+    }
+
     renderLevel();
   }, 350);
 }
