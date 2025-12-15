@@ -116,11 +116,40 @@ const chapters = {
       avatar: "assets/characters/ai-orion.png",
       text:
         "עבודה מדהימה, צוות! הפעלתם את חדר הבקרה. עכשיו אפשר לצאת אל המסע הבין־כוכבי. היעד הבא במפת הגלקסיה: כוכב המשתנים!"
+    },
+    // 🎥 סרטון סיום – לפני מעבר לפרק הבא
+    {
+      type: "video",
+      icon: "🎥",
+      bg: "assets/backgrounds/ch1-front-corridor.png",
+      story: "לפני שממשיכים לכוכב הבא — צפו בסרטון הסבר על פרויקט הצ'אטבוט (סיום פרק 1).",
+      character: "מיינדפלי הרובוט",
+      avatar: "assets/characters/ai-orion.png",
+    
+      // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
+      videoUrl: "https://player.vimeo.com/video/1146544386?title=0&byline=0&portrait=0",
+    
+      effect: "summary",
+      nextLabel: "להמשיך לכוכב הבא ➜"
     }
   ],
 
   // פרק 2 – placeholder
   2: [
+    // 🎬 סרטון פתיחה פרק 2
+    {
+      type: "video",
+      icon: "🎬",
+      bg: "assets/backgrounds/ch2-variable-planet.png",
+      story: "צפו בסרטון פתיחה קצר לפרק 2.",
+      character: "מיינדפלי הרובוט",
+      avatar: "assets/characters/ai-orion.png",
+      videoUrl: "https://player.vimeo.com/video/ID_START_CH2?title=0&byline=0&portrait=0",
+      effect: "portal",
+      nextLabel: "להתחיל את הפרק ➜"
+    },
+  
+    // (השלבים של הפרק)
     {
       type: "dialogue",
       icon: "🪐",
@@ -129,8 +158,22 @@ const chapters = {
       avatar: "assets/characters/ai-orion.png",
       text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם.",
       story: "משימות המשתנים יופיעו כאן בהמשך."
+    },
+  
+    // 🎥 סרטון סיום פרק 2
+    {
+      type: "video",
+      icon: "🎥",
+      bg: "assets/backgrounds/ch2-variable-planet.png",
+      story: "לפני שממשיכים לכוכב הבא — סרטון סיום פרק 2 על הצ'אטבוט.",
+      character: "מיינדפלי הרובוט",
+      avatar: "assets/characters/ai-orion.png",
+      videoUrl: "https://player.vimeo.com/video/ID_END_CH2?title=0&byline=0&portrait=0",
+      effect: "summary",
+      nextLabel: "להמשיך לכוכב הבא ➜"
     }
   ]
+
 };
 
 // ===============================
