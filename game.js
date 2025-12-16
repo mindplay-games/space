@@ -191,7 +191,7 @@ const chapters = {
     answers: [
       { text: "energy = 100", correct: true },
       { text: "print(energy)", correct: false },
-      { text: "energy = 50", correct: false },
+      { text: "energy == 50", correct: false },
       { text: 'print("energy")', correct: false }
     ],
     hint:
@@ -212,14 +212,14 @@ const chapters = {
     prompt:
       "גררו את הפעולות לסדר הנכון:",
     items: [
-      "להציג את התוכן של המבחנה",
-      "לתת שם למבחנה ולמלא אותה",
-      "לשנות את התוכן של המבחנה"
+      "להגיד על מה הוא שומר",
+      "להציג את המשתנה",
+      "לתת שם למשתנה"
     ],
     targetOrder: [
-      "לתת שם למבחנה ולמלא אותה",
-      "להציג את התוכן של המבחנה",
-      "לשנות את התוכן של המבחנה"
+      "לתת שם למשתנה",
+      "להגיד על מה הוא שומר",
+      "להציג את המשתנה"
     ],
     effect: "library",
     successText: "✅ הסדר נכון! המעבדה מתחילה להתייצב."
