@@ -134,45 +134,148 @@ const chapters = {
     }
   ],
 
-  // פרק 2 – placeholder
-  2: [
-    // 🎬 סרטון פתיחה פרק 2
-    {
-      type: "video",
-      icon: "🎬",
-      bg: "assets/backgrounds/ch2-variable-planet.png",
-      story: "צפו בסרטון פתיחה קצר לפרק 2.",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      videoUrl: "https://player.vimeo.com/video/ID_START_CH2?title=0&byline=0&portrait=0",
-      effect: "portal",
-      nextLabel: "להתחיל את הפרק ➜"
-    },
-  
-    // (השלבים של הפרק)
-    {
-      type: "dialogue",
-      icon: "🪐",
-      bg: "assets/backgrounds/ch2-variable-planet.png",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      text: "ברוכים הבאים ל-VARIABLE PRIME! פה נבחן את כוח המשתנים שלכם.",
-      story: "משימות המשתנים יופיעו כאן בהמשך."
-    },
-  
-    // 🎥 סרטון סיום פרק 2
-    {
-      type: "video",
-      icon: "🎥",
-      bg: "assets/backgrounds/ch2-variable-planet.png",
-      story: "לפני שממשיכים לכוכב הבא — סרטון סיום פרק 2 על הצ'אטבוט.",
-      character: "מיינדפלי הרובוט",
-      avatar: "assets/characters/ai-orion.png",
-      videoUrl: "https://player.vimeo.com/video/ID_END_CH2?title=0&byline=0&portrait=0",
-      effect: "summary",
-      nextLabel: "להמשיך לכוכב הבא ➜"
-    }
-  ]
+// פרק 2 – כוכב המשתנים (המעבדה הראשית)
+2: [
+  // 🎬 סרטון פתיחה – הגעה לכוכב המשתנים
+  {
+    type: "video",
+    icon: "🎬",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    videoUrl: "https://player.vimeo.com/video/ID_START_CH2?title=0&byline=0&portrait=0",
+    effect: "portal",
+    nextLabel: "להיכנס למעבדה ➜"
+  },
+
+  // 🧪 סצנת פתיחה – הבלגן במעבדה
+  {
+    type: "cutscene",
+    icon: "🧪",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "המבחנות במעבדה מתערבבות, חלקן בלי שמות וחלקן מחליפות תוכן בלי שליטה.",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    text:
+      "זו המעבדה ששולטת בכוכב כולו. כל מבחנה שומרת מידע חשוב, אבל כרגע – הכול מבולגן."
+  },
+
+  // 💡 גילוי – מה זה משתנה
+  {
+    type: "dialogue",
+    icon: "💡",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    text:
+      "כדי לעשות סדר, כל מבחנה חייבת שם ותוכן. בפייתון, דבר כזה נקרא משתנה.",
+    story:
+      "שם בלי תוכן לא עובד. תוכן בלי שם מסוכן."
+  },
+
+  // 🔗 משימה 1 – התאמה
+  {
+    type: "mcq",
+    icon: "🔗",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "לפניכם פעולות שונות שנעשו במעבדה. איזו שורה מתאימה לכל פעולה?",
+    character: "מיינדפלי הרובוט",
+    text:
+      "בחרו את ההתאמה הנכונה בין הקוד לפעולה שהוא עושה.",
+    question:
+      "איזו שורה נותנת שם למבחנה וממלאת אותה?",
+    answers: [
+      { text: "energy = 100", correct: true },
+      { text: "print(energy)", correct: false },
+      { text: "energy = 50", correct: false },
+      { text: 'print("energy")', correct: false }
+    ],
+    hint:
+      "יצירת משתנה נראית כך: שם = ערך",
+    effect: "light"
+  },
+
+  // 🔄 משימה 2 – סדר פעולות
+  {
+    type: "drag",
+    icon: "🔄",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "כדי להפעיל מכשיר במעבדה, חייבים לעבוד לפי הסדר הנכון.",
+    character: "מיינדפלי הרובוט",
+    text:
+      "סדרו את הפעולות מהראשונה לאחרונה.",
+    prompt:
+      "גררו את הפעולות לסדר הנכון:",
+    items: [
+      "להציג את התוכן של המבחנה",
+      "לתת שם למבחנה ולמלא אותה",
+      "לשנות את התוכן של המבחנה"
+    ],
+    targetOrder: [
+      "לתת שם למבחנה ולמלא אותה",
+      "להציג את התוכן של המבחנה",
+      "לשנות את התוכן של המבחנה"
+    ],
+    effect: "library",
+    successText: "✅ הסדר נכון! המעבדה מתחילה להתייצב."
+  },
+
+  // 👁️ משימה 3 – מה יודפס?
+  {
+    type: "mcq",
+    icon: "👁️",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "מסך במעבדה מציג את מה שיש עכשיו בתוך אחת המבחנות.",
+    character: "מיינדפלי הרובוט",
+    text:
+      "הסתכלו על הקוד וחשבו – מה יופיע על המסך?",
+    question:
+      "מה יודפס בסוף הקוד?\n\nenergy = 100\nenergy = 80\nprint(energy)",
+    answers: [
+      { text: "100", correct: false },
+      { text: "180", correct: false },
+      { text: "80", correct: true },
+      { text: "energy", correct: false }
+    ],
+    hint:
+      "המשתנה זוכר רק את הערך האחרון שנכתב אליו.",
+    effect: "light"
+  },
+
+  // 🌌 סיום הפרק – המעבדה נרגעת
+  {
+    type: "cutscene",
+    icon: "🌌",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "המבחנות מסודרות, האורות נרגעים והמעבדה חוזרת לפעול בצורה יציבה.",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    text:
+      "עבודה מצוינת! עכשיו אתם יודעים לשמור מידע, להשתמש בו ולשנות אותו כשצריך."
+  },
+
+  // 🎥 סרטון סיום פרק 2
+  {
+    type: "video",
+    icon: "🎥",
+    bg: "assets/backgrounds/ch2-variable-lab.png",
+    story:
+      "סיכום קצר לפני המעבר לפרק הבא.",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    videoUrl: "https://player.vimeo.com/video/ID_END_CH2?title=0&byline=0&portrait=0",
+    effect: "summary",
+    nextLabel: "להמשיך לכוכב הבא ➜"
+  }
+]
+
 
 };
 
