@@ -127,8 +127,7 @@ const chapters = {
       avatar: "assets/characters/ai-orion.png",
     
       // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
-      videoUrl: "https://player.vimeo.com/video/1146544386?title=0&byline=0&portrait=0",
-    
+      videoUrl: "https://player.vimeo.com/video/1147394845?title=0&byline=0&portrait=0",
       effect: "summary",
       nextLabel: "להמשיך לכוכב הבא ➜"
     }
