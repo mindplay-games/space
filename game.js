@@ -144,11 +144,10 @@ const chapters = {
       "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    videoUrl: "https://player.vimeo.com/video/ID_START_CH2?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1147396793?title=0&byline=0&portrait=0",
     effect: "portal",
     nextLabel: "להיכנס למעבדה ➜"
   },
-
   // 🧪 סצנת פתיחה – הבלגן במעבדה
   {
     type: "cutscene",
@@ -269,12 +268,11 @@ const chapters = {
       "סיכום קצר לפני המעבר לפרק הבא.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    videoUrl: "https://player.vimeo.com/video/ID_END_CH2?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1147397036?title=0&byline=0&portrait=0",
     effect: "summary",
     nextLabel: "להמשיך לכוכב הבא ➜"
   }
 ]
-
 
 };
 
