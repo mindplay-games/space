@@ -46,8 +46,15 @@ body{
   border:1px solid rgba(148,163,184,0.35);
   backdrop-filter:blur(14px);
   position:relative;
+
   max-height: calc(100vh - 40px);
-  overflow: hidden;
+
+  overflow-y: auto;                /* ✅ במקום overflow:hidden */
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+
+  padding-bottom: 28px;      
 }
 
 
