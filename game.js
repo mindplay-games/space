@@ -169,11 +169,9 @@ const chapters = {
     hint:
       'input("your name?")',
     validator: {
-      mode: "contains",
+      mode: "exact",
       patterns: [
-        'input("your name?")',
-        'input("your name")'
-      ]
+        'input("your name?")', 'input("your name")',"input('your name')","input('your name?')"]
     },
     effect: "engine",
     successText: "✅ קלטנו את שם המפעילה בהצלחה, האנטנה הראשית נדלקה!."
