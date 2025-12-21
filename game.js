@@ -720,8 +720,8 @@ function setTopUI() {
   } else {
     let title = `פרק ${chapterNum}`;
     if (chapterNum === 1) title += " – תיקון חדר הבקרה";
-    if (chapterNum === 2) title += " – כוכב המשתנים";
-    if (chapterNum === 3) title += " – כוכב התקשורת";
+    if (chapterNum === 2) title += " – כוכב התקשורת";
+    if (chapterNum === 3) title += " – כוכב המשתנים";
     chapterTitleEl.textContent = title;
 
   }
