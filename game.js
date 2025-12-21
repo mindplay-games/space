@@ -171,7 +171,8 @@ const chapters = {
     validator: {
       mode: "contains",
       patterns: [
-        'input("מה שמך?")','input("מה שמך")'
+        'input("מה שמך?")',
+        'input("מה שמך")'
       ]
     },
     effect: "engine",
