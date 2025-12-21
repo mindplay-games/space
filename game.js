@@ -136,8 +136,7 @@ const chapters = {
       "החללית נוחתת על כוכב עמוס אנטנות ומגדלי רדיו. כל הגלקסיה מחכה לשידור הראשון שלכם.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    // אם אין לך וידאו עדיין — השאר/תמחק את videoUrl והחלף ב-cutscene
-    // videoUrl: "https://player.vimeo.com/video/1148456276?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1148456276?title=0&byline=0&portrait=0",
     effect: "portal",
     nextLabel: "להדליק אנטנות ➜"
   },
