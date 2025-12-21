@@ -1,10 +1,3 @@
-// ===============================
-// MindPlay – Journey Through the Codeverse (Orion Edition)
-// Supports:
-//   ?chapter=1,2,...  → משחק "מלא" בפרקים
-//   ?lesson=1,2,3,... → משימות מבודדות ל-SCHOLAR
-// types: dialogue / cutscene / mcq / code / drag / video
-// ===============================
 
 // --- URL params ---
 const params = new URLSearchParams(window.location.search);
@@ -144,11 +137,10 @@ const chapters = {
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
     // אם אין לך וידאו עדיין — השאר/תמחק את videoUrl והחלף ב-cutscene
-    // videoUrl: "https://player.vimeo.com/video/XXXXXXXXX?title=0&byline=0&portrait=0",
+    // videoUrl: "https://player.vimeo.com/video/1148456276?title=0&byline=0&portrait=0",
     effect: "portal",
     nextLabel: "להדליק אנטנות ➜"
   },
-
   // 🌌 פתיחת סיפור
   {
     type: "cutscene",
@@ -249,9 +241,20 @@ const chapters = {
     text:
       "עבודה מדהימה! למדתם לקלוט מידע מהמשתמש בעזרת input() ולהשתמש בו בשידור.",
     effect: "summary"
-  }
+  },
+   {
+      type: "video",
+      icon: "🎥",
+      bg: "assets/backgrounds/ch3-communication-planet.png",
+      story: "לפני שממשיכים לכוכב הבא — צפו בסרטון הסבר על פרויקט הצ'אטבוט (סיום פרק 1).",
+      character: "מיינדפלי הרובוט",
+      avatar: "assets/characters/ai-orion.png",
+      // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
+      videoUrl: "https://player.vimeo.com/video/1148457594?title=0&byline=0&portrait=0",
+      effect: "summary",
+      nextLabel: "להמשיך לכוכב הבא ➜"
+    }
 ],
-
 3: [
   // 🎬 סרטון פתיחה – הגעה לכוכב המשתנים
   {
@@ -262,7 +265,7 @@ const chapters = {
       "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    videoUrl: "https://player.vimeo.com/video/1148408726?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1148453297?title=0&byline=0&portrait=0",
     effect: "portal",
     nextLabel: "להיכנס למעבדה ➜"
   },
@@ -377,7 +380,7 @@ const chapters = {
       "עבודה מצוינת! עכשיו אתם יודעים לשמור מידע, להשתמש בו ולשנות אותו כשצריך."
   },
 
-  // 🎥 סרטון סיום פרק 2
+  // 🎥 סרטון סיום פרק 3
   {
     type: "video",
     icon: "🎥",
@@ -386,13 +389,12 @@ const chapters = {
       "סיכום קצר לפני המעבר לפרק הבא.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    videoUrl: "https://player.vimeo.com/video/1147397036?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1148446176?title=0&byline=0&portrait=0",
     effect: "summary",
     nextLabel: "להמשיך לכוכב הבא ➜"
   }
 ],
 };
-
 // ===============================
 //      LESSONS (SCHOLAR MODE)
 // ===============================
