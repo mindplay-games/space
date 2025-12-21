@@ -143,7 +143,7 @@ const chapters = {
       "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
-    videoUrl: "https://player.vimeo.com/video/1147396793?title=0&byline=0&portrait=0",
+    videoUrl: "https://player.vimeo.com/video/1148408726?title=0&byline=0&portrait=0",
     effect: "portal",
     nextLabel: "להיכנס למעבדה ➜"
   },
