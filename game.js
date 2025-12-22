@@ -133,7 +133,7 @@ const chapters = {
     icon: "🎬",
     bg: "assets/backgrounds/ch3-communication-planet.png",
     story:
-      "החללית נוחתת על כוכב עמוס אנטנות ומגדלי רדיו. כל הגלקסיה מחכה לשידור הראשון שלכם.",
+      "",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
     videoUrl: "https://player.vimeo.com/video/1148456276?title=0&byline=0&portrait=0",
@@ -245,7 +245,7 @@ const chapters = {
       type: "video",
       icon: "🎥",
       bg: "assets/backgrounds/ch3-communication-planet.png",
-      story: "לפני שממשיכים לכוכב הבא — צפו בסרטון הסבר על פרויקט הצ'אטבוט (סיום פרק 1).",
+      story: "לפני שממשיכים לכוכב הבא — צפו בסרטון הסבר על פרויקט הצ'אטבוט.",
       character: "מיינדפלי הרובוט",
       avatar: "assets/characters/ai-orion.png",
       // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
@@ -385,7 +385,7 @@ const chapters = {
     icon: "🎥",
     bg: "assets/backgrounds/ch2-variable-lab.png",
     story:
-      "סיכום קצר לפני המעבר לפרק הבא.",
+      "לפני שממשיכים לכוכב הבא — צפו בסרטון הסבר על פרויקט הצ'אטבוט.",
     character: "מיינדפלי הרובוט",
     avatar: "assets/characters/ai-orion.png",
     videoUrl: "https://player.vimeo.com/video/1148446176?title=0&byline=0&portrait=0",
