@@ -188,15 +188,15 @@ const chapters = {
     text:
       "איזו אנטנה קולטת מידע אמיתי מהמשתמש?",
     question:
-      "איזה קוד באמת קולט שם מהטייס/ת ואז מדפיס אותו?",
+      "איזה קוד באמת קולט מידע מבחוץ?",
     answers: [
-      { text: 'name = "דני"\nprint(name)', correct: false },
-      { text: 'name = input("איך קוראים לך? ")\nprint(name)', correct: true },
-      { text: 'input = "דני"\nprint(input)', correct: false },
-      { text: 'print(input("איך קוראים לך? "))', correct: false }
+      { text: 'print("hello")', correct: false },
+      { text: 'input()', correct: true },
+      { text: 'print()', correct: false },
+      { text: 'import', correct: false }
     ],
     hint:
-      "input() מקבל טקסט מהמשתמש. אסור לקרוא למשתנה בשם input.",
+      "מקבל מידע מהמשתמש. input.",
     effect: "light"
   },
 
@@ -222,6 +222,8 @@ const chapters = {
       'input()',
       '📡 שידור מוכן'
     ],
+    hint:
+      "קודם נדפיס הוראה מה אנחנו מבקשים לקלוט - לאחר מכן נקלוט עם אינפוט ",
     effect: "library",
     successText: "🎉 מושלם! כל האנטנות נדלקו והשידור נקלט בכל הגלקסיה."
   },
