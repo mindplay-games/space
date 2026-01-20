@@ -1053,23 +1053,21 @@ function goNext() {
 
     // ✅ אם נגמר הפרק:
     if (levelIndex >= levels.length) {
-      // ב-SCHOLAR נשאיר לופ רגיל
-      if (isLessonMode) {
-        levelIndex = 0;
-        renderLevel();
+        levelIndex = levels.length - 1;
+        locked = true;
+      
+        // נוודא שאין כפתורי "המשך" פנימיים שממשיכים
+        nextBtn.classList.add("hidden");
+        nextFromCodeBtn.classList.add("hidden");
+        nextFromDragBtn.classList.add("hidden");
+        dialogueNextBtn.classList.add("hidden");
+        if (nextFromVideoBtn) nextFromVideoBtn.classList.add("hidden");
+        if (skipVideoBtn) skipVideoBtn.classList.add("hidden");
+      
+        // אופציונלי: לעצור וידאו אם היה פתוח
+        if (lessonVideoEl) lessonVideoEl.src = "";
+      
         return;
-      }
-
-      // בפרקים: לעבור לפרק הבא (אם קיים), אחרת לחזור לפרק 1
-      const nextChapter = chapterNum + 1;
-      const hasNext = !!chapters[nextChapter];
-
-      const url = new URL(window.location.href);
-      url.searchParams.delete("lesson");
-      url.searchParams.set("chapter", hasNext ? nextChapter : 1);
-
-      window.location.href = url.toString();
-      return;
     }
 
     renderLevel();
