@@ -122,7 +122,8 @@ const chapters = {
       // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
       videoUrl: "https://player.vimeo.com/video/1148417893?title=0&byline=0&portrait=0",
       effect: "summary",
-      nextLabel: "להמשיך לכוכב הבא ➜"
+      nextLabel: "להמשיך לכוכב הבא ➜",
+      isEndOfChapter: true
     }
   ],
 // פרק 2 – כוכב התקשורת (אינפוט)
@@ -228,7 +229,7 @@ const chapters = {
     successText: "🎉 מושלם! כל האנטנות נדלקו והשידור נקלט בכל הגלקסיה."
   },
 
-  // 🌌 סיום פרק 3
+  // 🌌 סיום פרק 2
   {
     type: "cutscene",
     icon: "🌌",
@@ -251,7 +252,8 @@ const chapters = {
       // ✅ כאן שמים את ה-ID של סרטון הסיום (המספר מ-Vimeo)
       videoUrl: "https://player.vimeo.com/video/1148457594?title=0&byline=0&portrait=0",
       effect: "summary",
-      nextLabel: "להמשיך לכוכב הבא ➜"
+      nextLabel: "להמשיך לכוכב הבא ➜",
+      isEndOfChapter: true
     }
 ],
 3: [
@@ -390,7 +392,8 @@ const chapters = {
     avatar: "assets/characters/ai-orion.png",
     videoUrl: "https://player.vimeo.com/video/1148446176?title=0&byline=0&portrait=0",
     effect: "summary",
-    nextLabel: "להמשיך לכוכב הבא ➜"
+    nextLabel: "להמשיך לכוכב הבא ➜",
+    isEndOfChapter: true
   }
 ],
 };
@@ -991,19 +994,31 @@ function renderVideo(lvl) {
     lessonVideoEl.src = lvl.videoUrl;
   }
 
+  // ✅ האם זה הוידאו האחרון בפרק?
+  const isLastLevel = (levelIndex === levels.length - 1);
+
+  // כפתור ירוק
   if (nextFromVideoBtn) {
-    nextFromVideoBtn.textContent = lvl.nextLabel || "המשך ➜";
-    nextFromVideoBtn.onclick = () => {
-      goNext();
-    };
+    if (isLastLevel) {
+      nextFromVideoBtn.classList.add("hidden");   // ✅ לא להראות בסוף פרק
+    } else {
+      nextFromVideoBtn.classList.remove("hidden");
+      nextFromVideoBtn.textContent = lvl.nextLabel || "המשך ➜";
+      nextFromVideoBtn.onclick = goNext;
+    }
   }
 
+  // כפתור דילוג
   if (skipVideoBtn) {
-    skipVideoBtn.onclick = () => {
-      goNext();
-    };
+    if (isLastLevel) {
+      skipVideoBtn.classList.add("hidden");       // ✅ לא להראות בסוף פרק
+    } else {
+      skipVideoBtn.classList.remove("hidden");
+      skipVideoBtn.onclick = goNext;
+    }
   }
 }
+
 
 const EFFECT_CLASSES = [
   "effect-portal",
