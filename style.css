@@ -32,8 +32,8 @@ body{
   justify-content:center;
 
   align-items:flex-start;  /* ✅ במקום center (שגורם לחיתוך כשאין מקום) */
-  min-height:100%;
-  padding:26px 20px;
+  height:100vh;
+  padding:0;
 }
 
 /* === GAME FRAME === */
@@ -55,7 +55,8 @@ body{
   -webkit-overflow-scrolling: touch;
   overscroll-behavior: contain;
 
-  padding-bottom: 28px;      
+  padding-bottom: 18px;
+  
 }
 
 
