@@ -641,7 +641,7 @@ button.ghost:hover{
   box-shadow:
     0 0 0 1px rgba(56,189,248,0)
 
-#videoBox .actions{
+.actions{
   justify-content: flex-end;   /* הכל לימין */
 }
 
