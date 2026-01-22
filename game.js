@@ -661,7 +661,6 @@ const videoBox = document.getElementById("videoBox");
 const videoStoryEl = document.getElementById("videoStory");
 const lessonVideoEl = document.getElementById("lessonVideo");
 const nextFromVideoBtn = document.getElementById("nextFromVideoBtn");
-const skipVideoBtn = document.getElementById("skipVideoBtn");
 
 const feedbackEl = document.getElementById("feedback");
 const chapterTitleEl = document.getElementById("chapterTitle");
@@ -1008,15 +1007,7 @@ function renderVideo(lvl) {
     }
   }
 
-  // כפתור דילוג
-  if (skipVideoBtn) {
-    if (isLastLevel) {
-      skipVideoBtn.classList.add("hidden");       // ✅ לא להראות בסוף פרק
-    } else {
-      skipVideoBtn.classList.remove("hidden");
-      skipVideoBtn.onclick = goNext;
-    }
-  }
+
 }
 
 
@@ -1077,7 +1068,6 @@ function goNext() {
         nextFromDragBtn.classList.add("hidden");
         dialogueNextBtn.classList.add("hidden");
         if (nextFromVideoBtn) nextFromVideoBtn.classList.add("hidden");
-        if (skipVideoBtn) skipVideoBtn.classList.add("hidden");
       
         // אופציונלי: לעצור וידאו אם היה פתוח
         if (lessonVideoEl) lessonVideoEl.src = "";
