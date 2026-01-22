@@ -59,6 +59,11 @@ body{
 }
 
 
+.actions{
+  justify-content: flex-end;   /* הכל לימין */
+}
+
+  
 /* מצב משימה – הקלף הוא הפוקוס, מסתירים story-card */
 .game.mode-challenge .story-card{
   display:none;
@@ -641,8 +646,3 @@ button.ghost:hover{
   box-shadow:
     0 0 0 1px rgba(56,189,248,0)
 
-.actions{
-  justify-content: flex-end;   /* הכל לימין */
-}
-
-  
