@@ -667,9 +667,11 @@ const chapterTitleEl = document.getElementById("chapterTitle");
 const levelCounterEl = document.getElementById("levelCounter");
 const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
+const dragPromptEL = document.getElementById("dragPrompt");
+
 
 // --- RTL לכל הטקסטים בעברית ---
-[storyEl, characterText, codePromptEl, questionEl, challengeStoryEl, feedbackEl].forEach(
+[storyEl, characterText, codePromptEl, questionEl,dragPromptEL, challengeStoryEl, feedbackEl].forEach(
   (el) => {
     if (!el) return;
     el.dir = "rtl";
