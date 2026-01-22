@@ -640,4 +640,9 @@ button.ghost:hover{
 .game.effect-portal::before{
   box-shadow:
     0 0 0 1px rgba(56,189,248,0)
+
+#videoBox .actions{
+  justify-content: flex-end;   /* הכל לימין */
+}
+
   
