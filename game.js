@@ -395,7 +395,15 @@ const chapters = {
     nextLabel: "להמשיך לכוכב הבא ➜",
     isEndOfChapter: true
   }
-],
+],4:[  {
+  type: "image",
+  icon: "⭐",
+  bg: "assets/backgrounds/ch1-classroom-portal.png",
+  story: "כדי להמשיך למסע המלא – לחצו על התמונה",
+
+  imageUrl: "assets/backgrounds/purchase.png",
+  link: "https://did.li/QVeIw"
+  }]
 };
 // ===============================
 //      LESSONS (SCHOLAR MODE)
