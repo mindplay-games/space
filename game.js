@@ -590,7 +590,6 @@ const lessons = {
       "עבודה מצוינת! עכשיו אתם יודעים לשמור מידע, להשתמש בו ולשנות אותו כשצריך."
   },
 
-  // 🎥 סרטון סיום פרק 2
   {
     type: "video",
     icon: "🎥",
@@ -603,7 +602,18 @@ const lessons = {
     effect: "summary",
     nextLabel: "להמשיך לכוכב הבא ➜"
   }
-]
+],4:[  {
+    type: "video",
+    icon: "🎬",
+    bg: "assets/backgrounds/ch1-classroom-portal.png",
+    story:
+      "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
+    character: "מיינדפלי הרובוט",
+    avatar: "assets/characters/ai-orion.png",
+    videoUrl: "assets/backgrounds/purchase.png",
+    effect: "portal",
+    nextLabel: "להיכנס למעבדה ➜"
+  }]
 };
 
 // ===============================
