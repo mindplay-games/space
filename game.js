@@ -609,7 +609,7 @@ const lessons = {
   story: "כדי להמשיך למסע המלא – לחצו על התמונה",
 
   imageUrl: "assets/backgrounds/purchase.png",
-  link: "https://your-site.com"
+  link: "https://did.li/QVeIw"
   }]
 };
 
