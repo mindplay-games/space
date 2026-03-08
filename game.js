@@ -741,6 +741,8 @@ function setTopUI() {
     if (chapterNum === 1) title += " – תיקון חדר הבקרה";
     if (chapterNum === 2) title += " – כוכב התקשורת";
     if (chapterNum === 3) title += " – כוכב המשתנים";
+    if (chapterNum === 4) title += " – המסע המלא";
+
     chapterTitleEl.textContent = title;
 
   }
@@ -826,21 +828,33 @@ function validateCode(userInput, validator) {
 function renderImage(lvl) {
   hideAllBoxes();
 
+  gameEl.classList.add("mode-challenge");
+  gameEl.classList.remove("mode-dialogue");
+
   const imageBox = document.getElementById("imageBox");
   const imageStory = document.getElementById("imageStory");
   const image = document.getElementById("chapterImage");
   const link = document.getElementById("imageLink");
 
+  // מסתירים את אזור הסיפור הרגיל
+  if (characterRow) characterRow.classList.add("hidden");
+  if (storyEl) {
+    storyEl.classList.add("hidden");
+    storyEl.textContent = "";
+  }
+
+  // מציגים את בלוק התמונה
   imageBox.classList.remove("hidden");
 
   imageStory.textContent = lvl.story || "";
-  image.src = lvl.imageUrl;
-  link.href = lvl.link;
+  image.src = lvl.imageUrl || "";
+  link.href = lvl.link || "#";
 }
 
 function renderDialogue(lvl) {
   hideAllBoxes();
-  
+  if (storyEl) storyEl.classList.remove("hidden");
+  if (characterRow) characterRow.classList.remove("hidden");
   gameEl.classList.add("mode-dialogue");
   gameEl.classList.remove("mode-challenge");
 
