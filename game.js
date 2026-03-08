@@ -675,6 +675,7 @@ const levelCounterEl = document.getElementById("levelCounter");
 const progressBarEl = document.getElementById("progressBar");
 const gameEl = document.querySelector(".game");
 const dragPromptEL = document.getElementById("dragPrompt");
+const imageBox = document.getElementById("imageBox");
 
 
 // --- RTL לכל הטקסטים בעברית ---
@@ -747,6 +748,7 @@ function resetFeedback() {
 }
 
 function hideAllBoxes() {
+  if (imageBox) imageBox.classList.add("hidden");
   mcqBox.classList.add("hidden");
   codeBox.classList.add("hidden");
   dragBox.classList.add("hidden");
@@ -811,6 +813,21 @@ function validateCode(userInput, validator) {
     return new RegExp(validator.pattern).test(userInput);
   }
   return false;
+}
+
+function renderImage(lvl) {
+  hideAllBoxes();
+
+  const imageBox = document.getElementById("imageBox");
+  const imageStory = document.getElementById("imageStory");
+  const image = document.getElementById("chapterImage");
+  const link = document.getElementById("imageLink");
+
+  imageBox.classList.remove("hidden");
+
+  imageStory.textContent = lvl.story || "";
+  image.src = lvl.imageUrl;
+  link.href = lvl.link;
 }
 
 function renderDialogue(lvl) {
@@ -1053,6 +1070,7 @@ function renderLevel() {
     return renderDialogue(lvl);
   if (lvl.type === "code") return renderCode(lvl);
   if (lvl.type === "drag") return renderDrag(lvl);
+  if (lvl.type === "image") return renderImage(lvl);
   return renderMCQ(lvl);
 }
 
