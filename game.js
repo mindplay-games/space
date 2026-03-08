@@ -603,16 +603,13 @@ const lessons = {
     nextLabel: "להמשיך לכוכב הבא ➜"
   }
 ],4:[  {
-    type: "video",
-    icon: "🎬",
-    bg: "assets/backgrounds/ch1-classroom-portal.png",
-    story:
-      "הילדים מגיעים לכוכב המשתנים. במרכזו – מעבדה ענקית מלאה במבחנות מהבהבות.",
-    character: "מיינדפלי הרובוט",
-    avatar: "assets/characters/ai-orion.png",
-    videoUrl: "assets/backgrounds/purchase.png",
-    effect: "portal",
-    nextLabel: "להיכנס למעבדה ➜"
+  type: "image",
+  icon: "⭐",
+  bg: "assets/backgrounds/ch1-classroom-portal.png",
+  story: "כדי להמשיך למסע המלא – לחצו על התמונה",
+
+  imageUrl: "assets/backgrounds/purchase.png",
+  link: "https://your-site.com"
   }]
 };
 
